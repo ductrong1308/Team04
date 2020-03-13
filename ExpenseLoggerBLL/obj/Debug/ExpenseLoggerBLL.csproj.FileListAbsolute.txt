@@ -1,0 +1,14 @@
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\ExpenseLoggerBLL.dll.config
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\ExpenseLoggerBLL.dll
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\ExpenseLoggerBLL.pdb
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\EntityFramework.dll
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\ExpenseLoggerDAL.dll
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\ExpenseLoggerDAL.pdb
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\ExpenseLoggerDAL.dll.config
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\EntityFramework.xml
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\obj\Debug\ExpenseLoggerBLL.csprojAssemblyReference.cache
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\obj\Debug\ExpenseLoggerBLL.csproj.CopyComplete
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\obj\Debug\ExpenseLoggerBLL.dll
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\obj\Debug\ExpenseLoggerBLL.pdb
