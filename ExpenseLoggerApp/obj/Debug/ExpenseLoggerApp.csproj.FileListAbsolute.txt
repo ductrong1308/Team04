@@ -21,3 +21,7 @@ C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\E
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.csproj.CoreCompileInputs.cache
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.Resources.AppResource.resources
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.Forms.ExpenseLoggerSignInForm.resources
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.Forms.UserControls.HomeUserControl.resources
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.Forms.UserControls.ReportUserControl.resources
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.Forms.UserControls.SettingsUserControl.resources
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.Forms.UserControls.StatisticsUserControl.resources

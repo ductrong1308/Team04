@@ -69,6 +69,30 @@
     <Compile Include="Forms\ExpenseLoggerSignInForm.Designer.cs">
       <DependentUpon>ExpenseLoggerSignInForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControls\HomeUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControls\HomeUserControl.Designer.cs">
+      <DependentUpon>HomeUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControls\ReportUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControls\ReportUserControl.Designer.cs">
+      <DependentUpon>ReportUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControls\SettingsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControls\SettingsUserControl.Designer.cs">
+      <DependentUpon>SettingsUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControls\StatisticsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControls\StatisticsUserControl.Designer.cs">
+      <DependentUpon>StatisticsUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\LoginInfo.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
@@ -83,6 +107,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExpenseLoggerSignInForm.resx">
       <DependentUpon>ExpenseLoggerSignInForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControls\HomeUserControl.resx">
+      <DependentUpon>HomeUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControls\ReportUserControl.resx">
+      <DependentUpon>ReportUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControls\SettingsUserControl.resx">
+      <DependentUpon>SettingsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControls\StatisticsUserControl.resx">
+      <DependentUpon>StatisticsUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -121,6 +157,7 @@
       <Name>ExpenseLoggerDAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

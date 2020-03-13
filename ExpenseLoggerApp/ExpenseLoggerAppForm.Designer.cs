@@ -28,86 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabMainExpenseLogger = new System.Windows.Forms.TabControl();
-            this.tabDailyExpense = new System.Windows.Forms.TabPage();
-            this.tabReport = new System.Windows.Forms.TabPage();
-            this.tabExpenseStatistics = new System.Windows.Forms.TabPage();
-            this.tabSettings = new System.Windows.Forms.TabPage();
-            this.tabMainExpenseLogger.SuspendLayout();
+            this.buttonHome = new System.Windows.Forms.Button();
+            this.buttonReport = new System.Windows.Forms.Button();
+            this.buttonStatistics = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
+            this.panelFooterMenu = new System.Windows.Forms.Panel();
+            this.panelTopMenuBar = new System.Windows.Forms.Panel();
+            this.panelMainContent = new System.Windows.Forms.Panel();
+            this.panelFooterMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabMainExpenseLogger
+            // buttonHome
             // 
-            this.tabMainExpenseLogger.Controls.Add(this.tabDailyExpense);
-            this.tabMainExpenseLogger.Controls.Add(this.tabReport);
-            this.tabMainExpenseLogger.Controls.Add(this.tabExpenseStatistics);
-            this.tabMainExpenseLogger.Controls.Add(this.tabSettings);
-            this.tabMainExpenseLogger.Location = new System.Drawing.Point(-1, 9);
-            this.tabMainExpenseLogger.Name = "tabMainExpenseLogger";
-            this.tabMainExpenseLogger.SelectedIndex = 0;
-            this.tabMainExpenseLogger.Size = new System.Drawing.Size(1531, 900);
-            this.tabMainExpenseLogger.TabIndex = 0;
+            this.buttonHome.Location = new System.Drawing.Point(28, 25);
+            this.buttonHome.Name = "buttonHome";
+            this.buttonHome.Size = new System.Drawing.Size(306, 69);
+            this.buttonHome.TabIndex = 0;
+            this.buttonHome.Text = "Home";
+            this.buttonHome.UseVisualStyleBackColor = true;
             // 
-            // tabDailyExpense
+            // buttonReport
             // 
-            this.tabDailyExpense.Location = new System.Drawing.Point(4, 33);
-            this.tabDailyExpense.Name = "tabDailyExpense";
-            this.tabDailyExpense.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDailyExpense.Size = new System.Drawing.Size(1523, 863);
-            this.tabDailyExpense.TabIndex = 0;
-            this.tabDailyExpense.Text = "Daily Expense Logging";
-            this.tabDailyExpense.UseVisualStyleBackColor = true;
+            this.buttonReport.Location = new System.Drawing.Point(370, 25);
+            this.buttonReport.Name = "buttonReport";
+            this.buttonReport.Size = new System.Drawing.Size(287, 69);
+            this.buttonReport.TabIndex = 1;
+            this.buttonReport.Text = "Report";
+            this.buttonReport.UseVisualStyleBackColor = true;
             // 
-            // tabReport
+            // buttonStatistics
             // 
-            this.tabReport.Location = new System.Drawing.Point(4, 33);
-            this.tabReport.Name = "tabReport";
-            this.tabReport.Padding = new System.Windows.Forms.Padding(3);
-            this.tabReport.Size = new System.Drawing.Size(1523, 863);
-            this.tabReport.TabIndex = 1;
-            this.tabReport.Text = "Expense Report";
-            this.tabReport.UseVisualStyleBackColor = true;
+            this.buttonStatistics.Location = new System.Drawing.Point(689, 25);
+            this.buttonStatistics.Name = "buttonStatistics";
+            this.buttonStatistics.Size = new System.Drawing.Size(288, 69);
+            this.buttonStatistics.TabIndex = 2;
+            this.buttonStatistics.Text = "Statistics";
+            this.buttonStatistics.UseVisualStyleBackColor = true;
             // 
-            // tabExpenseStatistics
+            // buttonSettings
             // 
-            this.tabExpenseStatistics.Location = new System.Drawing.Point(4, 33);
-            this.tabExpenseStatistics.Name = "tabExpenseStatistics";
-            this.tabExpenseStatistics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabExpenseStatistics.Size = new System.Drawing.Size(1523, 863);
-            this.tabExpenseStatistics.TabIndex = 2;
-            this.tabExpenseStatistics.Text = "Expense Statistics";
-            this.tabExpenseStatistics.UseVisualStyleBackColor = true;
+            this.buttonSettings.Location = new System.Drawing.Point(1032, 25);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(300, 69);
+            this.buttonSettings.TabIndex = 3;
+            this.buttonSettings.Text = "Settings";
+            this.buttonSettings.UseVisualStyleBackColor = true;
             // 
-            // tabSettings
+            // panelFooterMenu
             // 
-            this.tabSettings.Location = new System.Drawing.Point(4, 33);
-            this.tabSettings.Name = "tabSettings";
-            this.tabSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSettings.Size = new System.Drawing.Size(1523, 863);
-            this.tabSettings.TabIndex = 3;
-            this.tabSettings.Text = "Settings";
-            this.tabSettings.UseVisualStyleBackColor = true;
+            this.panelFooterMenu.Controls.Add(this.buttonHome);
+            this.panelFooterMenu.Controls.Add(this.buttonSettings);
+            this.panelFooterMenu.Controls.Add(this.buttonReport);
+            this.panelFooterMenu.Controls.Add(this.buttonStatistics);
+            this.panelFooterMenu.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelFooterMenu.Location = new System.Drawing.Point(0, 802);
+            this.panelFooterMenu.Name = "panelFooterMenu";
+            this.panelFooterMenu.Size = new System.Drawing.Size(1385, 116);
+            this.panelFooterMenu.TabIndex = 4;
+            // 
+            // panelTopMenuBar
+            // 
+            this.panelTopMenuBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTopMenuBar.Location = new System.Drawing.Point(0, 0);
+            this.panelTopMenuBar.Name = "panelTopMenuBar";
+            this.panelTopMenuBar.Size = new System.Drawing.Size(1385, 57);
+            this.panelTopMenuBar.TabIndex = 5;
+            // 
+            // panelMainContent
+            // 
+            this.panelMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMainContent.Location = new System.Drawing.Point(0, 57);
+            this.panelMainContent.Name = "panelMainContent";
+            this.panelMainContent.Size = new System.Drawing.Size(1385, 745);
+            this.panelMainContent.TabIndex = 6;
             // 
             // ExpenseLoggerAppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1553, 918);
-            this.Controls.Add(this.tabMainExpenseLogger);
+            this.ClientSize = new System.Drawing.Size(1385, 918);
+            this.Controls.Add(this.panelMainContent);
+            this.Controls.Add(this.panelTopMenuBar);
+            this.Controls.Add(this.panelFooterMenu);
             this.Name = "ExpenseLoggerAppForm";
             this.Text = "Form1";
-            this.tabMainExpenseLogger.ResumeLayout(false);
+            this.panelFooterMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabMainExpenseLogger;
-        private System.Windows.Forms.TabPage tabDailyExpense;
-        private System.Windows.Forms.TabPage tabReport;
-        private System.Windows.Forms.TabPage tabExpenseStatistics;
-        private System.Windows.Forms.TabPage tabSettings;
+        private System.Windows.Forms.Button buttonHome;
+        private System.Windows.Forms.Button buttonReport;
+        private System.Windows.Forms.Button buttonStatistics;
+        private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.Panel panelFooterMenu;
+        private System.Windows.Forms.Panel panelTopMenuBar;
+        private System.Windows.Forms.Panel panelMainContent;
     }
 }
 

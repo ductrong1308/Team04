@@ -1,4 +1,5 @@
-﻿using ExpenseLoggerApp.Helpers;
+﻿using ExpenseLoggerApp.Forms.UserControls;
+using ExpenseLoggerApp.Helpers;
 using ExpenseLoggerApp.Resources;
 using ExpenseLoggerBLL.Commands;
 using ExpenseLoggerBLL.Queries;
@@ -27,25 +28,48 @@ namespace ExpenseLoggerApp
 
             DoFormCustomSettings();
 
-            tabMainExpenseLogger.SelectedIndexChanged += TabMainExpenseLogger_SelectedIndexChanged;
+            buttonHome.Click += ButtonHome_Click;
+            buttonReport.Click += ButtonReport_Click;
         }
 
-        private void TabMainExpenseLogger_SelectedIndexChanged(object sender, EventArgs e)
+        private void ButtonReport_Click(object sender, EventArgs e)
         {
-            switch (tabMainExpenseLogger.SelectedTab.Name)
+            ReportUserControl reportUserControl = new ReportUserControl();
+            SwitchView(reportUserControl, ((Button)sender));
+        }
+
+        private void ButtonHome_Click(object sender, EventArgs e)
+        {
+            HomeUserControl homeUserControl = new HomeUserControl();
+            SwitchView(homeUserControl, ((Button)sender));
+        }
+
+        private void SetColor(Button clickedButton)
+        {
+            for (int i = 0; i < panelFooterMenu.Controls.Count; i++)
             {
-                case "tabDailyExpense":
-                    break;
-
-                case "tabReport":
-                    break;
-
-                case "tabExpenseStatistics":
-                    break;
-
-                case "tabSettings":
-                    break;
+                Button button = panelFooterMenu.Controls[i] as Button;
+                button.BackColor = Color.Transparent;
+                button.ForeColor = Color.Black;
             }
+
+            clickedButton.BackColor = Color.DarkGray;
+            clickedButton.ForeColor = Color.White;
+        }
+
+        private void SwitchView(UserControl newView, Button clickedButton)
+        {
+            if (panelMainContent.Controls.Count > 0)
+            {
+                UserControl oldView = panelMainContent.Controls[0] as UserControl;
+                panelMainContent.Controls.Remove(oldView);
+                oldView.Dispose();
+            }
+
+            panelMainContent.Controls.Add(newView);
+            newView.Dock = DockStyle.Fill;
+
+            SetColor(clickedButton);
         }
 
         private void DoFormCustomSettings()
@@ -59,24 +83,6 @@ namespace ExpenseLoggerApp
             this.MinimizeBox = false;
         }
 
-        private void LoadDailyExpense()
-        {
 
-        }
-
-        private void ViewExpenseReport()
-        {
-
-        }
-
-        private void ViewExpenseStatistics()
-        {
-
-        }
-
-        private void ViewExpenseLoggerAppSettings()
-        {
-
-        }
     }
 }
