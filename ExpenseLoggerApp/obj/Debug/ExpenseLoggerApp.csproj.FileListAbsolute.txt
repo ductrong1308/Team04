@@ -18,3 +18,6 @@ C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\E
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.csproj.CopyComplete
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.exe
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.pdb
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.csproj.CoreCompileInputs.cache
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.Resources.AppResource.resources
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerApp\obj\Debug\ExpenseLoggerApp.Forms.ExpenseLoggerSignInForm.resources

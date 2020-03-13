@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpenseLoggerApp.Forms;
+using System;
 using System.Windows.Forms;
 
 namespace ExpenseLoggerApp

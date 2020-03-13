@@ -9,11 +9,19 @@ namespace ExpenseLoggerBLL.Queries
         {
         }
 
-        public static User GetUserByIdAsync(int id)
+        public User GetUserByIdAsync(int id)
         {
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
                 return context.Users.FirstOrDefault(x => x.Id == id);
+            }
+        }
+
+        public User GetUserByEmailAndPassword(string email, string password)
+        {
+            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
+            {
+                return context.Users.FirstOrDefault(x => x.EmailAddress == email && x.Password == password);
             }
         }
     }
