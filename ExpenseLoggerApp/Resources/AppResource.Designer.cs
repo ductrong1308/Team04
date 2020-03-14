@@ -88,11 +88,38 @@ namespace ExpenseLoggerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data has been saved successfully!.
+        /// </summary>
+        internal static string DataSavedSuccessful {
+            get {
+                return ResourceManager.GetString("DataSavedSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date Of Birth.
         /// </summary>
         internal static string DateOfBirth {
             get {
                 return ResourceManager.GetString("DateOfBirth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this expense?.
+        /// </summary>
+        internal static string DeleteConfirmMessage {
+            get {
+                return ResourceManager.GetString("DeleteConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Expense.
+        /// </summary>
+        internal static string DeleteExpense {
+            get {
+                return ResourceManager.GetString("DeleteExpense", resourceCulture);
             }
         }
         
@@ -147,6 +174,24 @@ namespace ExpenseLoggerApp.Resources {
         internal static string Gender {
             get {
                 return ResourceManager.GetString("Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount must be a number!.
+        /// </summary>
+        internal static string InvalidAmount {
+            get {
+                return ResourceManager.GetString("InvalidAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid date range. Please select another date!.
+        /// </summary>
+        internal static string InvalidDateRange {
+            get {
+                return ResourceManager.GetString("InvalidDateRange", resourceCulture);
             }
         }
         

@@ -40,36 +40,40 @@
             // 
             // buttonHome
             // 
-            this.buttonHome.Location = new System.Drawing.Point(28, 25);
+            this.buttonHome.Location = new System.Drawing.Point(102, 14);
+            this.buttonHome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonHome.Name = "buttonHome";
-            this.buttonHome.Size = new System.Drawing.Size(306, 69);
+            this.buttonHome.Size = new System.Drawing.Size(167, 37);
             this.buttonHome.TabIndex = 0;
             this.buttonHome.Text = "Home";
             this.buttonHome.UseVisualStyleBackColor = true;
             // 
             // buttonReport
             // 
-            this.buttonReport.Location = new System.Drawing.Point(370, 25);
+            this.buttonReport.Location = new System.Drawing.Point(291, 14);
+            this.buttonReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonReport.Name = "buttonReport";
-            this.buttonReport.Size = new System.Drawing.Size(287, 69);
+            this.buttonReport.Size = new System.Drawing.Size(157, 37);
             this.buttonReport.TabIndex = 1;
             this.buttonReport.Text = "Report";
             this.buttonReport.UseVisualStyleBackColor = true;
             // 
             // buttonStatistics
             // 
-            this.buttonStatistics.Location = new System.Drawing.Point(689, 25);
+            this.buttonStatistics.Location = new System.Drawing.Point(470, 14);
+            this.buttonStatistics.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonStatistics.Name = "buttonStatistics";
-            this.buttonStatistics.Size = new System.Drawing.Size(288, 69);
+            this.buttonStatistics.Size = new System.Drawing.Size(157, 37);
             this.buttonStatistics.TabIndex = 2;
             this.buttonStatistics.Text = "Statistics";
             this.buttonStatistics.UseVisualStyleBackColor = true;
             // 
             // buttonSettings
             // 
-            this.buttonSettings.Location = new System.Drawing.Point(1032, 25);
+            this.buttonSettings.Location = new System.Drawing.Point(649, 14);
+            this.buttonSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.Size = new System.Drawing.Size(300, 69);
+            this.buttonSettings.Size = new System.Drawing.Size(164, 37);
             this.buttonSettings.TabIndex = 3;
             this.buttonSettings.Text = "Settings";
             this.buttonSettings.UseVisualStyleBackColor = true;
@@ -81,35 +85,39 @@
             this.panelFooterMenu.Controls.Add(this.buttonReport);
             this.panelFooterMenu.Controls.Add(this.buttonStatistics);
             this.panelFooterMenu.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFooterMenu.Location = new System.Drawing.Point(0, 802);
+            this.panelFooterMenu.Location = new System.Drawing.Point(0, 510);
+            this.panelFooterMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelFooterMenu.Name = "panelFooterMenu";
-            this.panelFooterMenu.Size = new System.Drawing.Size(1385, 116);
+            this.panelFooterMenu.Size = new System.Drawing.Size(937, 63);
             this.panelFooterMenu.TabIndex = 4;
             // 
             // panelTopMenuBar
             // 
             this.panelTopMenuBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTopMenuBar.Location = new System.Drawing.Point(0, 0);
+            this.panelTopMenuBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelTopMenuBar.Name = "panelTopMenuBar";
-            this.panelTopMenuBar.Size = new System.Drawing.Size(1385, 57);
+            this.panelTopMenuBar.Size = new System.Drawing.Size(937, 22);
             this.panelTopMenuBar.TabIndex = 5;
             // 
             // panelMainContent
             // 
             this.panelMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMainContent.Location = new System.Drawing.Point(0, 57);
+            this.panelMainContent.Location = new System.Drawing.Point(0, 22);
+            this.panelMainContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelMainContent.Name = "panelMainContent";
-            this.panelMainContent.Size = new System.Drawing.Size(1385, 745);
+            this.panelMainContent.Size = new System.Drawing.Size(937, 488);
             this.panelMainContent.TabIndex = 6;
             // 
             // ExpenseLoggerAppForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1385, 918);
+            this.ClientSize = new System.Drawing.Size(937, 573);
             this.Controls.Add(this.panelMainContent);
             this.Controls.Add(this.panelTopMenuBar);
             this.Controls.Add(this.panelFooterMenu);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ExpenseLoggerAppForm";
             this.Text = "Form1";
             this.panelFooterMenu.ResumeLayout(false);

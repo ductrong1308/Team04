@@ -30,6 +30,10 @@ namespace ExpenseLoggerApp
 
             buttonHome.Click += ButtonHome_Click;
             buttonReport.Click += ButtonReport_Click;
+
+            // Load Home User Control
+            HomeUserControl homeUserControl = new HomeUserControl();
+            SwitchView(homeUserControl, buttonHome);
         }
 
         private void ButtonReport_Click(object sender, EventArgs e)

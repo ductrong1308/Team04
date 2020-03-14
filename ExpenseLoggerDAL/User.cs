@@ -1,9 +1,7 @@
 namespace ExpenseLoggerDAL
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class User : BaseEntity
     {
@@ -27,9 +25,6 @@ namespace ExpenseLoggerDAL
         public string EmailAddress { get; set; }
 
         public bool Gender { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? DateOfBirth { get; set; }
 
         [StringLength(100)]
         public string Password { get; set; }

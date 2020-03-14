@@ -4,10 +4,10 @@ namespace ExpenseLoggerDAL
 
     public partial class Setting : BaseEntity
     {
-        [StringLength(10)]
+        [StringLength(30)]
         public string Name { get; set; }
 
-        [StringLength(10)]
+        [StringLength(30)]
         public string Value { get; set; }
 
         public int UserID { get; set; }

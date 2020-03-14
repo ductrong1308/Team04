@@ -9,7 +9,7 @@ C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\E
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\EntityFramework.xml
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\obj\Debug\ExpenseLoggerBLL.csprojAssemblyReference.cache
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\obj\Debug\ExpenseLoggerBLL.csproj.CoreCompileInputs.cache
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\obj\Debug\ExpenseLoggerBLL.csproj.CopyComplete
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\obj\Debug\ExpenseLoggerBLL.dll
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\obj\Debug\ExpenseLoggerBLL.pdb
-C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerBLL\obj\Debug\ExpenseLoggerBLL.csproj.CoreCompileInputs.cache

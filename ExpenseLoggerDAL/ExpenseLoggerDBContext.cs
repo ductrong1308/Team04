@@ -1,9 +1,6 @@
 namespace ExpenseLoggerDAL
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
     public partial class ExpenseLoggerDBContext : DbContext
     {
@@ -19,12 +16,6 @@ namespace ExpenseLoggerDAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>()
-                .HasMany(e => e.Expenses)
-                .WithRequired(e => e.Category)
-                .HasForeignKey(e => e.CategoryId)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Expenses)
                 .WithRequired(e => e.User)
