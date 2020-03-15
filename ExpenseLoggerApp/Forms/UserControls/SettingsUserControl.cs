@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ExpenseLoggerApp.Forms.UserControls
 {
-    public partial class SettingsUserControl : UserControl
+    public partial class SettingsUserControl : BaseUserControl
     {
         public SettingsUserControl()
         {

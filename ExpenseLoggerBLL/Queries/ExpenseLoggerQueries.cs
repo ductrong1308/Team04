@@ -1,6 +1,8 @@
 ﻿using ExpenseLoggerDAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 
 namespace ExpenseLoggerBLL.Queries
@@ -40,7 +42,8 @@ namespace ExpenseLoggerBLL.Queries
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
                 return context.Expenses
-                    .Where(x => x.CreatedDate >= fromDate && x.CreatedDate <= toDate)
+                    .Where(x => DbFunctions.TruncateTime(x.CreatedDate) >= fromDate.Date 
+                        && DbFunctions.TruncateTime(x.CreatedDate) <= toDate.Date)
                     .OrderBy(x=> x.CreatedDate)
                     .ToList();
             }

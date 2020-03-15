@@ -232,6 +232,15 @@ namespace ExpenseLoggerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No data found!.
+        /// </summary>
+        internal static string NoDataFound {
+            get {
+                return ResourceManager.GetString("NoDataFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select an expense item in the data grid view!.
         /// </summary>
         internal static string NoExpenseItemSelected {

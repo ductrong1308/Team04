@@ -15,13 +15,12 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
         private void BaseUserControl_Load(object sender, EventArgs e)
         {
-            parentForm = (ExpenseLoggerAppForm)this.Parent.Parent;
+            parentForm = this.Parent?.Parent as ExpenseLoggerAppForm;
             this.LoadFormData();
         }
 
         public virtual void LoadFormData()
         {
-            throw new NotImplementedException();
         }
     }
 }

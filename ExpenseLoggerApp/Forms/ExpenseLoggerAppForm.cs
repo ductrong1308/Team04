@@ -26,10 +26,23 @@ namespace ExpenseLoggerApp
 
             buttonHome.Click += ButtonHome_Click;
             buttonReport.Click += ButtonReport_Click;
+            buttonStatistics.Click += ButtonStatistics_Click;
+            buttonSettings.Click += ButtonSettings_Click;
 
             // Load Home User Control
             HomeUserControl homeUserControl = new HomeUserControl();
             SwitchView(homeUserControl, buttonHome);
+        }
+
+        private void ButtonSettings_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ButtonStatistics_Click(object sender, EventArgs e)
+        {
+            StatisticsUserControl statisticsUserControl = new StatisticsUserControl();
+            SwitchView(statisticsUserControl, ((Button)sender));
         }
 
         private void ButtonReport_Click(object sender, EventArgs e)
