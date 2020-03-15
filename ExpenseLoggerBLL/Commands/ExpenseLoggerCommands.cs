@@ -27,11 +27,11 @@ namespace ExpenseLoggerBLL.Commands
             }
         }
 
-        public void DeleteSelectedExpense(int selectedExpenseId)
+        public void DeleteSelectedExpense(Expense selectedExpense)
         {
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
-                Expense selectedItem = context.Expenses.FirstOrDefault(x => x.Id == selectedExpenseId);
+                Expense selectedItem = context.Expenses.FirstOrDefault(x => x.Id == selectedExpense.Id);
                 if (selectedItem != null)
                 {
                     context.Expenses.Remove(selectedItem);

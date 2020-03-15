@@ -174,6 +174,9 @@
   <data name="LastNameIsRequired" xml:space="preserve">
     <value>Last Name is required!</value>
   </data>
+  <data name="NoExpenseItemSelected" xml:space="preserve">
+    <value>Please select an expense item in the data grid view!</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>

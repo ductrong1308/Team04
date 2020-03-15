@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ExpenseLoggerBLL.Queries;
-using ExpenseLoggerBLL.Commands;
-using ExpenseLoggerApp.Helpers;
+﻿using ExpenseLoggerApp.Resources;
 using ExpenseLoggerDAL;
-using ExpenseLoggerApp.Resources;
-using ExpenseLoggerApp.Forms.UserControls.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace ExpenseLoggerApp.Forms.UserControls
 {
@@ -32,25 +22,12 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
             // TODO: replace 1 = LoginInfo.UserId
             expenseCategories = this.parentForm.appQueries.GetExpenseCategories(1);
-
             comboBoxCategories.DataSource = expenseCategories;
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
         {
-            ExpenseLoggerFormBase frm;     //frm_main is your main form which user control is on it
-            frm = (ExpenseLoggerFormBase)this.FindForm();
-            var abc = this.Parent;
-
             this.ClearFormData();
-        }
-
-        private void ClearFormData()
-        {
-            dateTimePickerCreatedDate.Value = DateTime.Now;
-            textBoxAmount.Text = string.Empty;
-            comboBoxCategories.SelectedIndex = 0;
-            comboBoxCategories.Focus();
         }
 
         private void ButtonAddNewExpense_Click(object sender, EventArgs e)
@@ -84,6 +61,14 @@ namespace ExpenseLoggerApp.Forms.UserControls
                     MessageBox.Show(AppResource.ErrorHasOccurred);
                 }
             }
+        }
+
+        private void ClearFormData()
+        {
+            dateTimePickerCreatedDate.Value = DateTime.Now;
+            textBoxAmount.Text = string.Empty;
+            comboBoxCategories.SelectedIndex = 0;
+            comboBoxCategories.Focus();
         }
     }
 }

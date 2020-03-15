@@ -232,6 +232,15 @@ namespace ExpenseLoggerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select an expense item in the data grid view!.
+        /// </summary>
+        internal static string NoExpenseItemSelected {
+            get {
+                return ResourceManager.GetString("NoExpenseItemSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string Password {
