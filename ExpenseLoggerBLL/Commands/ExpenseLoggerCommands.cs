@@ -39,5 +39,18 @@ namespace ExpenseLoggerBLL.Commands
                 }
             }
         }
+
+        public void UpdateExistingExpense(Expense existingExpense)
+        {
+            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
+            {
+                Expense selectedItem = context.Expenses.FirstOrDefault(x => x.Id == existingExpense.Id);
+                selectedItem.CategoryName = existingExpense.CategoryName;
+                selectedItem.Amount = existingExpense.Amount;
+                selectedItem.CreatedDate = existingExpense.CreatedDate;
+
+                context.SaveChanges();
+            }
+        }
     }
 }

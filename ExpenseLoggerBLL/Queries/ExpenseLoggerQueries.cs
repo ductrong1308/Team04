@@ -39,7 +39,10 @@ namespace ExpenseLoggerBLL.Queries
         {
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
-                return context.Expenses.Where(x => x.CreatedDate >= fromDate && x.CreatedDate <= toDate).ToList();
+                return context.Expenses
+                    .Where(x => x.CreatedDate >= fromDate && x.CreatedDate <= toDate)
+                    .OrderBy(x=> x.CreatedDate)
+                    .ToList();
             }
         }
     }

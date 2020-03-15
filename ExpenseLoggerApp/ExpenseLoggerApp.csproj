@@ -56,18 +56,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExpenseLoggerAppForm.cs">
+    <Compile Include="Forms\ExpenseLoggerAppForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExpenseLoggerAppForm.Designer.cs">
+    <Compile Include="Forms\ExpenseLoggerAppForm.Designer.cs">
       <DependentUpon>ExpenseLoggerAppForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ExpenseLoggerAppProgram.cs" />
+    <Compile Include="Forms\ExpenseLoggerEditExpenseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExpenseLoggerEditExpenseForm.Designer.cs">
+      <DependentUpon>ExpenseLoggerEditExpenseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExpenseLoggerFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\ExpenseLoggerSignInForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ExpenseLoggerSignInForm.Designer.cs">
       <DependentUpon>ExpenseLoggerSignInForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControls\BaseUserControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\UserControls\HomeUserControl.cs">
       <SubType>UserControl</SubType>
@@ -75,6 +87,7 @@
     <Compile Include="Forms\UserControls\HomeUserControl.Designer.cs">
       <DependentUpon>HomeUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControls\Interfaces\IUserControlLoaded.cs" />
     <Compile Include="Forms\UserControls\ReportUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,7 +106,7 @@
     <Compile Include="Forms\UserControls\StatisticsUserControl.Designer.cs">
       <DependentUpon>StatisticsUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\ValidationHelper.cs" />
     <Compile Include="Helpers\LoginInfo.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,8 +115,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResource.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ExpenseLoggerAppForm.resx">
+    <EmbeddedResource Include="Forms\ExpenseLoggerAppForm.resx">
       <DependentUpon>ExpenseLoggerAppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExpenseLoggerEditExpenseForm.resx">
+      <DependentUpon>ExpenseLoggerEditExpenseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExpenseLoggerSignInForm.resx">
       <DependentUpon>ExpenseLoggerSignInForm.cs</DependentUpon>

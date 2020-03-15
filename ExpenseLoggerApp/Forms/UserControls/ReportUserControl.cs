@@ -11,10 +11,11 @@ using ExpenseLoggerApp.Resources;
 using ExpenseLoggerBLL.Queries;
 using ExpenseLoggerBLL.Commands;
 using ExpenseLoggerDAL;
+using ExpenseLoggerApp.Forms.UserControls.Interfaces;
 
 namespace ExpenseLoggerApp.Forms.UserControls
 {
-    public partial class ReportUserControl : UserControl
+    public partial class ReportUserControl : BaseUserControl
     {
         private List<string> filterBy;
         List<Expense> expenses;
@@ -24,6 +25,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
         private ExpenseLoggerQueries appQueries;
         private ExpenseLoggerCommands appCommands;
 
+        public static Expense selectedExpense;
 
         public ReportUserControl()
         {
@@ -54,11 +56,16 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
             DataGridViewColumn[] columns = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn(){ Name = "Money Spent For" },
-                new DataGridViewTextBoxColumn(){ Name = "Amount" },
-                new DataGridViewTextBoxColumn(){ Name = "Date" }
+                new DataGridViewTextBoxColumn(){ Name = "Money Spent For", SortMode = DataGridViewColumnSortMode.NotSortable },
+                new DataGridViewTextBoxColumn(){ Name = "Amount", SortMode = DataGridViewColumnSortMode.NotSortable },
+                new DataGridViewTextBoxColumn(){ Name = "Date", SortMode = DataGridViewColumnSortMode.NotSortable }
             };
             dataGridViewExpenses.Columns.AddRange(columns);
+        }
+
+        public override void LoadFormData()
+        {
+
         }
 
         private void ButtonDeleteExpense_Click(object sender, EventArgs e)
@@ -81,7 +88,22 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
         private void ButtonEditExpense_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            selectedExpense = expenses[selectedRowId];
+            ExpenseLoggerEditExpenseForm editExpenseForm = new ExpenseLoggerEditExpenseForm();
+            var result = editExpenseForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                dataGridViewExpenses.SelectionChanged -= DataGridViewExpenses_SelectionChanged;
+
+                expenses = null;
+                selectedRowId = -1;
+                buttonEditExpense.Enabled = false;
+                buttonDeleteExpense.Enabled = false;
+
+                QueryExpenseData();
+            }
+
+            editExpenseForm.Hide();
         }
 
         private void DataGridViewExpenses_SelectionChanged(object sender, EventArgs e)
@@ -89,9 +111,9 @@ namespace ExpenseLoggerApp.Forms.UserControls
             var rowIndex = dataGridViewExpenses.SelectedRows.Count > 0
                 ? dataGridViewExpenses.SelectedRows[0].Index : dataGridViewExpenses.SelectedCells[0].RowIndex;
 
-            if(rowIndex > -1)
+            if (rowIndex > -1)
             {
-                selectedRowId = expenses[rowIndex].Id;
+                selectedRowId = rowIndex;
                 buttonEditExpense.Enabled = true;
                 buttonDeleteExpense.Enabled = true;
             }

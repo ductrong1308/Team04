@@ -4,40 +4,16 @@ using ExpenseLoggerBLL.Commands;
 using ExpenseLoggerBLL.Queries;
 using ExpenseLoggerDAL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExpenseLoggerApp.Forms
 {
-    public partial class ExpenseLoggerSignInForm : Form
+    public partial class ExpenseLoggerSignInForm : ExpenseLoggerFormBase
     {
-        private ExpenseLoggerQueries appQueries;
-        private ExpenseLoggerCommands appCommands;
-        private ErrorProvider errorProvider;
-
         public ExpenseLoggerSignInForm()
         {
             InitializeComponent();
-
-            appQueries = new ExpenseLoggerQueries();
-            appCommands = new ExpenseLoggerCommands();
-            errorProvider = new ErrorProvider();
-
-            this.DoCustomAppSettings();
             this.RegisterAppEvents();
-        }
-
-        private void DoCustomAppSettings()
-        {
-            errorProvider.Clear();
-            this.CenterToScreen();
-            this.Text = AppResource.AppName;
         }
 
         private void RegisterAppEvents()
@@ -115,7 +91,7 @@ namespace ExpenseLoggerApp.Forms
             }
             else
             {
-                if (!EmailHelper.IsValidEmail(email))
+                if (!ValidationHelper.IsValidEmail(email))
                 {
                     errorProvider.SetError(textBoxEmail, AppResource.InvalidEmailFormat);
                 }
@@ -132,7 +108,7 @@ namespace ExpenseLoggerApp.Forms
             bool isFormInfoValid =
                 !string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName)
                 && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(confirmPassword)
-                && password.Equals(confirmPassword) && EmailHelper.IsValidEmail(email);
+                && password.Equals(confirmPassword) && ValidationHelper.IsValidEmail(email);
 
             if (!isFormInfoValid)
             {
@@ -152,7 +128,7 @@ namespace ExpenseLoggerApp.Forms
                 }
                 else
                 {
-                    if (!EmailHelper.IsValidEmail(email))
+                    if (!ValidationHelper.IsValidEmail(email))
                     {
                         errorProvider.SetError(textBoxSignUpEmail, AppResource.InvalidEmailFormat);
                     }

@@ -12,40 +12,36 @@ using ExpenseLoggerBLL.Commands;
 using ExpenseLoggerApp.Helpers;
 using ExpenseLoggerDAL;
 using ExpenseLoggerApp.Resources;
+using ExpenseLoggerApp.Forms.UserControls.Interfaces;
 
 namespace ExpenseLoggerApp.Forms.UserControls
 {
-    public partial class HomeUserControl : UserControl
+    public partial class HomeUserControl : BaseUserControl
     {
-        private ExpenseLoggerQueries appQueries;
-        private ExpenseLoggerCommands appCommands;
-
         private List<string> expenseCategories;
 
         public HomeUserControl()
         {
             InitializeComponent();
-
-            InitializeFormEventsAndData();
         }
 
-
-        private void InitializeFormEventsAndData()
+        public override void LoadFormData()
         {
-            this.appQueries = new ExpenseLoggerQueries();
-            this.appCommands = new ExpenseLoggerCommands();
-
             buttonAddNewExpense.Click += ButtonAddNewExpense_Click;
             buttonClear.Click += ButtonClear_Click;
 
             // TODO: replace 1 = LoginInfo.UserId
-            expenseCategories = this.appQueries.GetExpenseCategories(1);
+            expenseCategories = this.parentForm.appQueries.GetExpenseCategories(1);
 
             comboBoxCategories.DataSource = expenseCategories;
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
         {
+            ExpenseLoggerFormBase frm;     //frm_main is your main form which user control is on it
+            frm = (ExpenseLoggerFormBase)this.FindForm();
+            var abc = this.Parent;
+
             this.ClearFormData();
         }
 
@@ -69,7 +65,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
                 string category = expenseCategories[comboBoxCategories.SelectedIndex];
                 DateTime expensesCreatedDate = dateTimePickerCreatedDate.Value;
 
-                bool isDataSavedSuccessful = appCommands.AddNewExpense(new Expense()
+                bool isDataSavedSuccessful = this.parentForm.appCommands.AddNewExpense(new Expense()
                 {
                     Amount = amount,
                     CategoryName = category,
