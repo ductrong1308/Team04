@@ -47,6 +47,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
                 new DataGridViewTextBoxColumn(){ Name = "Date", SortMode = DataGridViewColumnSortMode.NotSortable }
             };
             dataGridViewExpenses.Columns.AddRange(columns);
+
+            // Display today's expense when users first visit this tab.
             QueryExpenseData();
 
             // Register buttons events
@@ -56,6 +58,11 @@ namespace ExpenseLoggerApp.Forms.UserControls
             comboBoxFilterBy.SelectedIndexChanged += ComboBoxFilterBy_SelectedIndexChanged;
         }
 
+        /// <summary>
+        /// Based on what users selected to filter data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ComboBoxFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedFilter = comboBoxFilterBy.SelectedItem.ToString();
@@ -67,20 +74,31 @@ namespace ExpenseLoggerApp.Forms.UserControls
                     break;
 
                 case "This Week":
+                    // First day of this week.
                     dateTimePickerFromDate.Value = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Sunday);
+
+                    // Last day of this week.
                     dateTimePickerToDate.Value = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Saturday);
                     break;
 
                 case "This Month":
+                    // First day of this month
                     var firstDayOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+
+                    // Last day of this month
                     var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
                     dateTimePickerFromDate.Value = firstDayOfMonth;
                     dateTimePickerToDate.Value = lastDayOfMonth;
                     break;
 
                 case "This Year":
+                    // First day of this year
                     var firstDayOfYear = new DateTime(DateTime.Today.Year, 1, 1);
+
+                    // Last day of this year
                     var lastDayOfYear = firstDayOfYear.AddYears(1).AddDays(-1);
+
                     dateTimePickerFromDate.Value = firstDayOfYear;
                     dateTimePickerToDate.Value = lastDayOfYear;
                     break;
@@ -92,11 +110,21 @@ namespace ExpenseLoggerApp.Forms.UserControls
             }
         }
 
+        /// <summary>
+        /// Query expenses data and show them on the dataGridView.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonView_Click(object sender, EventArgs e)
         {
             QueryExpenseData();
         }
 
+        /// <summary>
+        /// Edit an exisiting expense.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonEditExpense_Click(object sender, EventArgs e)
         {
             if (selectedExpense == null)
@@ -105,19 +133,28 @@ namespace ExpenseLoggerApp.Forms.UserControls
             }
             else
             {
+                // Show another form that lets user to edit the selected expese's data.
                 ExpenseLoggerEditExpenseForm editExpenseForm = new ExpenseLoggerEditExpenseForm();
                 var result = editExpenseForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-
+                    // Set main form's data to default values
                     SetFormControlsToDefaultState();
+
+                    // Query data after editing and display them on the dataGridView.
                     QueryExpenseData();
                 }
 
+                // If users don't make any changes.
                 editExpenseForm.Hide();
             }
         }
 
+        /// <summary>
+        /// Delete an exisiting expense item.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonDeleteExpense_Click(object sender, EventArgs e)
         {
             if (selectedExpense == null)
@@ -132,16 +169,26 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
                 if (dialogResult == DialogResult.OK)
                 {
+                    // Call to BLL to delete the selected Expense.
                     this.parentForm.appCommands.DeleteSelectedExpense(selectedExpense);
 
+                    // Set main form's data to default values
                     SetFormControlsToDefaultState();
+
+                    // Query data after editing and display them on the dataGridView.
                     QueryExpenseData();
                 }
             }
         }
 
+        /// <summary>
+        /// Get selected expense item on the dataGridView.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DataGridViewExpenses_SelectionChanged(object sender, EventArgs e)
         {
+            // Check if users selected the whole row or just a cell
             var rowIndex = dataGridViewExpenses.SelectedRows.Count > 0
                 ? dataGridViewExpenses.SelectedRows[0].Index
                 : dataGridViewExpenses.SelectedCells.Count > 0
@@ -149,12 +196,18 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
             if (rowIndex > -1)
             {
+                // Store the selected expense to a variable, which will be used later on.
                 selectedExpense = expensesData[rowIndex];
+
+                // Enable edit and delete button when user has selected an item on the dataGridView.
                 buttonEditExpense.Enabled = true;
                 buttonDeleteExpense.Enabled = true;
             }
         }
 
+        /// <summary>
+        /// Call service in BLL to get expenses data and show them on the dataGridView.
+        /// </summary>
         private void QueryExpenseData()
         {
             if (dateTimePickerFromDate.Value.Date > dateTimePickerToDate.Value.Date)
@@ -163,12 +216,19 @@ namespace ExpenseLoggerApp.Forms.UserControls
             }
             else
             {
+                // Call service in BLL
                 expensesData = this.parentForm.appQueries.FilterExpensesByDate(
                     LoginInfo.UserId, dateTimePickerFromDate.Value.Date, dateTimePickerToDate.Value.Date);
+
+                // Display data.
                 DisplayExpensesData(expensesData);
             }
         }
 
+        /// <summary>
+        /// Display data on dataGridViewExpenses
+        /// </summary>
+        /// <param name="expenses"></param>
         private void DisplayExpensesData(List<Expense> expenses)
         {
             dataGridViewExpenses.Rows.Clear();
@@ -176,9 +236,11 @@ namespace ExpenseLoggerApp.Forms.UserControls
             expenses.Select(x => new string[] { x.CategoryName, x.Amount.ToString("C", LoginInfo.UserPreferenceCulture), x.CreatedDate.ToString("MMM/dd/yyyy H:mm tt") })
                 .ToList().ForEach(x => dataGridViewExpenses.Rows.Add(x));
 
+            // Format data before showing.
             labelTotalItemCountValue.Text = expenses.Count.ToString("n0");
             labelTotalMoneyValue.Text = expenses.Sum(x => x.Amount).ToString("C", LoginInfo.UserPreferenceCulture);
 
+            // Using LINQ to retrieve some useful information and display on the summary section.
             var spentMostOnItem = expenses.GroupBy(x => x.CategoryName).Select(x => new
             {
                 GroupName = x.Key,
@@ -194,6 +256,9 @@ namespace ExpenseLoggerApp.Forms.UserControls
             dataGridViewExpenses.SelectionChanged += DataGridViewExpenses_SelectionChanged;
         }
 
+        /// <summary>
+        /// Set form's control and variable to default values.
+        /// </summary>
         private void SetFormControlsToDefaultState()
         {
             buttonEditExpense.Enabled = false;

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExpenseLoggerApp.Forms.UserControls.Interfaces
+﻿namespace ExpenseLoggerApp.Forms.UserControls.Interfaces
 {
+    /// <summary>
+    /// Interface IUserControlLoaded
+    /// </summary>
     public interface IUserControlLoaded
     {
-        // Force all the user controls to implement this method.
         // The method is used to show form's default data.
+        // All classes which implement this interface must implement this method.
         void LoadFormData();
     }
 }

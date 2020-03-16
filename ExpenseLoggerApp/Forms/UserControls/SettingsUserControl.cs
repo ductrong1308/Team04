@@ -38,10 +38,9 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
             expenseLoggerBackupRestore = new ExpenseLoggerBackupRestore();
 
-
             this.EstablishDBConnection();
-            this.InitializeDataSet();
 
+            this.InitializeDataSet();
 
             buttonBackup.Click += ButtonBackup_Click;
             buttonRestore.Click += ButtonRestore_Click;
@@ -49,6 +48,19 @@ namespace ExpenseLoggerApp.Forms.UserControls
             // ensure that the connection to the db is closed
             this.parentForm.FormClosing += (s, e) => expenseLoggerBackupRestore.CloseConnection();
             this.HandleDestroyed += (s, e) => expenseLoggerBackupRestore.CloseConnection();
+        }
+
+        private void ButtonBackup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                expenseLoggerBackupRestore.BackupDataSetToXML(expenseLoggerDataSet);
+                MessageBox.Show(AppResource.BackupDone);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ButtonRestore_Click(object sender, EventArgs e)
@@ -76,67 +88,6 @@ namespace ExpenseLoggerApp.Forms.UserControls
                 buttonRestore.Enabled = true;
             }
         }
-
-        private void ProcessRestoreData()
-        {
-            buttonBackup.Enabled = false;
-            buttonRestore.Enabled = false;
-
-            for (int i = 0; i < expenseLoggerDataSet.Tables.Count; i++)
-            {
-                DataTable table = expenseLoggerDataSet.Tables[i];
-                foreach (DataRow row in table.Rows)
-                {
-                    expenseLoggerBackupRestore.InsertTableRow(row);
-                }
-            }
-            comboBoxCurrencies.SelectedIndexChanged -= ComboBoxCurrencies_SelectedIndexChanged;
-            dataGridViewExpensesCategories.CellValueChanged -= DataGridViewExpensesCategories_CellValueChanged;
-            dataGridViewExpensesCategories.DefaultValuesNeeded -= DataGridViewExpensesCategories_DefaultValuesNeeded;
-            LoadDataToComboBox();
-            LoadDataToCategoryGridView();
-
-            MessageBox.Show(AppResource.RestoreDone);
-        }
-
-        private void ButtonBackup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                expenseLoggerBackupRestore.BackupDataSetToXML(expenseLoggerDataSet);
-                MessageBox.Show(AppResource.BackupDone);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-
-        private void EstablishDBConnection()
-        {
-            // Get and open connection to the DB
-            string connectionString = expenseLoggerBackupRestore.GetConnectionString("ExpenseLoggerConnection");
-            expenseLoggerBackupRestore.OpenConnection(connectionString);
-
-            expenseLoggerDataSet = new DataSet()
-            {
-                // must be named for backup purposes
-                DataSetName = "ExpenseLoggerDataSet",
-            };
-        }
-
-        private void InitializeDataSet()
-        {
-            // Get Data Table
-            List<string> tables = new List<string>() { "Users", "Categories", "Expenses", "Settings" };
-            foreach (var tableName in tables)
-            {
-                DataTable dataTable = expenseLoggerBackupRestore.GetDataTable(tableName);
-                expenseLoggerDataSet.Tables.Add(dataTable);
-            }
-        }
-
 
         private void DataGridViewExpensesCategories_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
@@ -180,6 +131,58 @@ namespace ExpenseLoggerApp.Forms.UserControls
             MessageBox.Show(AppResource.DataSavedSuccessful);
         }
 
+        private void EstablishDBConnection()
+        {
+            // Get and open connection to the DB
+            string connectionString = expenseLoggerBackupRestore.GetConnectionString("ExpenseLoggerConnection");
+            expenseLoggerBackupRestore.OpenConnection(connectionString);
+
+            expenseLoggerDataSet = new DataSet()
+            {
+                // must be named for backup purposes
+                DataSetName = "ExpenseLoggerDataSet",
+            };
+        }
+
+        private void InitializeDataSet()
+        {
+            // Get Data Table
+            List<string> tables = new List<string>() { "Users", "Categories", "Expenses", "Settings" };
+            foreach (var tableName in tables)
+            {
+                DataTable dataTable = expenseLoggerBackupRestore.GetDataTable(tableName);
+                expenseLoggerDataSet.Tables.Add(dataTable);
+            }
+        }
+
+        private void ProcessRestoreData()
+        {
+            buttonBackup.Enabled = false;
+            buttonRestore.Enabled = false;
+
+            for (int i = 0; i < expenseLoggerDataSet.Tables.Count; i++)
+            {
+                DataTable table = expenseLoggerDataSet.Tables[i];
+                foreach (DataRow row in table.Rows)
+                {
+                    expenseLoggerBackupRestore.InsertTableRow(row);
+                }
+            }
+
+            // De-register grid and combobox events.
+            comboBoxCurrencies.SelectedIndexChanged -= ComboBoxCurrencies_SelectedIndexChanged;
+            dataGridViewExpensesCategories.CellValueChanged -= DataGridViewExpensesCategories_CellValueChanged;
+            dataGridViewExpensesCategories.DefaultValuesNeeded -= DataGridViewExpensesCategories_DefaultValuesNeeded;
+
+            // Reload data to the combobox
+            LoadDataToComboBox();
+
+            // Reload data to the dataGridView.
+            LoadDataToCategoryGridView();
+
+            MessageBox.Show(AppResource.RestoreDone);
+        }
+
         public void LoadDataToComboBox()
         {
             List<ComboboxItem> appCurrencyList = new List<ComboboxItem>()
@@ -204,6 +207,10 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
         }
 
+        /// <summary>
+        /// Default settings for CategoriesDataGridView
+        /// and adding columns to the grid.
+        /// </summary>
         private void SetupCategoriesDataGridView()
         {
             // DataGridView settings
@@ -232,6 +239,9 @@ namespace ExpenseLoggerApp.Forms.UserControls
             dataGridViewExpensesCategories.Columns.AddRange(columns);
         }
 
+        /// <summary>
+        /// Loading data to the datagridView
+        /// </summary>
         private void LoadDataToCategoryGridView()
         {
             dataGridViewExpensesCategories.Rows.Clear();
@@ -244,6 +254,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             // This is auto generated No
             dataGridViewExpensesCategories.Columns["No."].ReadOnly = true;
 
+            // Register grid's events.
             dataGridViewExpensesCategories.CellValueChanged += DataGridViewExpensesCategories_CellValueChanged;
             dataGridViewExpensesCategories.DefaultValuesNeeded += DataGridViewExpensesCategories_DefaultValuesNeeded;
         }
