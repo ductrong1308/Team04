@@ -57,9 +57,9 @@
     <Compile Include="Category.cs" />
     <Compile Include="Expense.cs" />
     <Compile Include="ExpenseLoggerDBContext.cs" />
-    <Compile Include="Migrations\202003141738488_InitializeMigration.cs" />
-    <Compile Include="Migrations\202003141738488_InitializeMigration.designer.cs">
-      <DependentUpon>202003141738488_InitializeMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202003160423253_InitializeDB.cs" />
+    <Compile Include="Migrations\202003160423253_InitializeDB.designer.cs">
+      <DependentUpon>202003160423253_InitializeDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,8 +71,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003141738488_InitializeMigration.resx">
-      <DependentUpon>202003141738488_InitializeMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003160423253_InitializeDB.resx">
+      <DependentUpon>202003160423253_InitializeDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

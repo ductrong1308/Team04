@@ -22,33 +22,20 @@ namespace ExpenseLoggerApp.Forms
         {
             buttonSignIn.Click += ButtonSignIn_Click;
             buttonSignUp.Click += ButtonSignUp_Click;
+            textBoxPassword.KeyDown += TextBoxPassword_KeyDown;
+        }
+
+        private void TextBoxPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SignIn();
+            }
         }
 
         private void ButtonSignIn_Click(object sender, EventArgs e)
         {
-            errorProvider.Clear();
-
-            string email = textBoxEmail.Text;
-            string password = textBoxPassword.Text;
-
-            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
-            {
-                string encryptedPassword = PasswordHelper.Encrypt(password);
-                User loggedInUser = appQueries.GetUserByEmailAndPassword(email, encryptedPassword);
-
-                if (loggedInUser == null)
-                {
-                    MessageBox.Show(AppResource.InvalidLoginInfo);
-                }
-                else
-                {
-                    this.OpenExpenseLoggerAppForm(loggedInUser);
-                }
-            }
-            else
-            {
-                this.ValidateSignInForm(email, password);
-            }
+            this.SignIn();
         }
 
         private void ButtonSignUp_Click(object sender, EventArgs e)
@@ -90,6 +77,33 @@ namespace ExpenseLoggerApp.Forms
                 {
                     MessageBox.Show(AppResource.ErrorHasOccurred);
                 }
+            }
+        }
+
+        private void SignIn()
+        {
+            errorProvider.Clear();
+
+            string email = textBoxEmail.Text;
+            string password = textBoxPassword.Text;
+
+            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+            {
+                string encryptedPassword = PasswordHelper.Encrypt(password);
+                User loggedInUser = appQueries.GetUserByEmailAndPassword(email, encryptedPassword);
+
+                if (loggedInUser == null)
+                {
+                    MessageBox.Show(AppResource.InvalidLoginInfo);
+                }
+                else
+                {
+                    this.OpenExpenseLoggerAppForm(loggedInUser);
+                }
+            }
+            else
+            {
+                this.ValidateSignInForm(email, password);
             }
         }
 

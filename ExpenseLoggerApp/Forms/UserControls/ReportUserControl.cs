@@ -47,6 +47,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
                 new DataGridViewTextBoxColumn(){ Name = "Date", SortMode = DataGridViewColumnSortMode.NotSortable }
             };
             dataGridViewExpenses.Columns.AddRange(columns);
+            QueryExpenseData();
 
             // Register buttons events
             buttonView.Click += ButtonView_Click;
