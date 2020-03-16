@@ -62,7 +62,10 @@ namespace ExpenseLoggerApp.Forms
                         new Category(){ Name = "Meals" },
                         new Category(){ Name = "Transportation" },
                         new Category(){ Name = "Housing" },
-                        new Category(){ Name = "Entertainment" }
+                        new Category(){ Name = "Entertainment" },
+                        new Category(){ Name = "Medical" },
+                        new Category(){ Name = "Pets" },
+                        new Category(){ Name = "Education" }
                     }
                 };
 

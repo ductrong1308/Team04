@@ -53,15 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseEntity.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Expense.cs" />
     <Compile Include="ExpenseLoggerDBContext.cs" />
-    <Compile Include="Migrations\202003160423253_InitializeDB.cs" />
-    <Compile Include="Migrations\202003160423253_InitializeDB.designer.cs">
-      <DependentUpon>202003160423253_InitializeDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="User.cs" />
@@ -69,11 +63,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003160423253_InitializeDB.resx">
-      <DependentUpon>202003160423253_InitializeDB.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

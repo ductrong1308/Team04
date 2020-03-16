@@ -57,8 +57,17 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="SeedData" />
+    <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ExpenseLoggerDB.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Categories.sql" />
+    <Build Include="Tables\Expenses.sql" />
+    <Build Include="Tables\Settings.sql" />
+    <Build Include="Tables\Users.sql" />
+    <PostDeploy Include="SeedData\ExpenseLoggerSeedData.sql" />
   </ItemGroup>
 </Project>

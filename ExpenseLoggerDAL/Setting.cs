@@ -2,8 +2,10 @@ namespace ExpenseLoggerDAL
 {
     using System.ComponentModel.DataAnnotations;
 
-    public partial class Setting : BaseEntity
+    public partial class Setting
     {
+        public int Id { get; set; }
+
         [StringLength(30)]
         public string Name { get; set; }
 

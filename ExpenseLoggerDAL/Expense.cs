@@ -4,8 +4,10 @@ namespace ExpenseLoggerDAL
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Expenses")]
-    public partial class Expense : BaseEntity
+    public partial class Expense
     {
+        public int Id { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public string CategoryName { get; set; }

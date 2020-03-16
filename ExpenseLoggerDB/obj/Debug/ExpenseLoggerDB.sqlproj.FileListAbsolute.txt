@@ -4,3 +4,7 @@ C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDB\bin\Debug\Ex
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDB\obj\Debug\ExpenseLoggerDB.sqlprojAssemblyReference.cache
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDB\obj\Debug\ExpenseLoggerDB.dll
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDB\obj\Debug\ExpenseLoggerDB.pdb
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDB\obj\Debug\Model.xml
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDB\obj\Debug\refactor.xml
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDB\obj\Debug\postdeploy.sql
+C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDB\obj\Debug\predeploy.sql

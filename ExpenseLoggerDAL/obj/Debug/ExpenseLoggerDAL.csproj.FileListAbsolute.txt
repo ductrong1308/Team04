@@ -10,5 +10,3 @@ C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDAL\obj\Debug\E
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDAL\obj\Debug\ExpenseLoggerDAL.dll
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDAL\obj\Debug\ExpenseLoggerDAL.pdb
 C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDAL\obj\Debug\ExpenseLoggerDAL.csprojAssemblyReference.cache
-C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDAL\obj\Debug\ExpenseLoggerDAL.Migrations.InitializeDB.resources
-C:\Users\Bradley\Desktop\ProjectTeam04ExpenseLogger\ExpenseLoggerDAL\obj\Debug\ExpenseLoggerDAL.csproj.GenerateResource.cache
