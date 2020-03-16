@@ -39,12 +39,12 @@
             this.dateTimePickerToDate = new System.Windows.Forms.DateTimePicker();
             this.dataGridViewExpenses = new System.Windows.Forms.DataGridView();
             this.groupBoxSummaryInfo = new System.Windows.Forms.GroupBox();
-            this.labelTotalItemCount = new System.Windows.Forms.Label();
-            this.labelTotalMoney = new System.Windows.Forms.Label();
-            this.labelSpentMost = new System.Windows.Forms.Label();
-            this.labelTotalItemCountValue = new System.Windows.Forms.Label();
-            this.labelTotalMoneyValue = new System.Windows.Forms.Label();
             this.labelSpentMostValue = new System.Windows.Forms.Label();
+            this.labelTotalMoneyValue = new System.Windows.Forms.Label();
+            this.labelTotalItemCountValue = new System.Windows.Forms.Label();
+            this.labelSpentMost = new System.Windows.Forms.Label();
+            this.labelTotalMoney = new System.Windows.Forms.Label();
+            this.labelTotalItemCount = new System.Windows.Forms.Label();
             this.buttonEditExpense = new System.Windows.Forms.Button();
             this.buttonDeleteExpense = new System.Windows.Forms.Button();
             this.groupBoxFilter.SuspendLayout();
@@ -55,20 +55,20 @@
             // labelExpenseReport
             // 
             this.labelExpenseReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelExpenseReport.Location = new System.Drawing.Point(338, 0);
-            this.labelExpenseReport.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelExpenseReport.Location = new System.Drawing.Point(620, 0);
+            this.labelExpenseReport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelExpenseReport.Name = "labelExpenseReport";
-            this.labelExpenseReport.Size = new System.Drawing.Size(248, 34);
+            this.labelExpenseReport.Size = new System.Drawing.Size(455, 63);
             this.labelExpenseReport.TabIndex = 2;
             this.labelExpenseReport.Text = "Expenses Report";
             // 
             // labelBy
             // 
             this.labelBy.AutoSize = true;
-            this.labelBy.Location = new System.Drawing.Point(34, 37);
-            this.labelBy.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelBy.Location = new System.Drawing.Point(62, 68);
+            this.labelBy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBy.Name = "labelBy";
-            this.labelBy.Size = new System.Drawing.Size(19, 13);
+            this.labelBy.Size = new System.Drawing.Size(35, 25);
             this.labelBy.TabIndex = 0;
             this.labelBy.Text = "By";
             // 
@@ -76,27 +76,27 @@
             // 
             this.comboBoxFilterBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterBy.FormattingEnabled = true;
-            this.comboBoxFilterBy.Location = new System.Drawing.Point(64, 33);
-            this.comboBoxFilterBy.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxFilterBy.Location = new System.Drawing.Point(117, 61);
+            this.comboBoxFilterBy.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxFilterBy.Name = "comboBoxFilterBy";
-            this.comboBoxFilterBy.Size = new System.Drawing.Size(144, 21);
+            this.comboBoxFilterBy.Size = new System.Drawing.Size(261, 32);
             this.comboBoxFilterBy.TabIndex = 1;
             // 
             // dateTimePickerFromDate
             // 
-            this.dateTimePickerFromDate.Location = new System.Drawing.Point(268, 35);
-            this.dateTimePickerFromDate.Margin = new System.Windows.Forms.Padding(2);
+            this.dateTimePickerFromDate.Location = new System.Drawing.Point(491, 65);
+            this.dateTimePickerFromDate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerFromDate.Name = "dateTimePickerFromDate";
-            this.dateTimePickerFromDate.Size = new System.Drawing.Size(202, 20);
+            this.dateTimePickerFromDate.Size = new System.Drawing.Size(367, 29);
             this.dateTimePickerFromDate.TabIndex = 2;
             // 
             // labelFrom
             // 
             this.labelFrom.AutoSize = true;
-            this.labelFrom.Location = new System.Drawing.Point(233, 37);
-            this.labelFrom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelFrom.Location = new System.Drawing.Point(427, 68);
+            this.labelFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFrom.Name = "labelFrom";
-            this.labelFrom.Size = new System.Drawing.Size(30, 13);
+            this.labelFrom.Size = new System.Drawing.Size(57, 25);
             this.labelFrom.TabIndex = 4;
             this.labelFrom.Text = "From";
             // 
@@ -109,20 +109,21 @@
             this.groupBoxFilter.Controls.Add(this.dateTimePickerFromDate);
             this.groupBoxFilter.Controls.Add(this.comboBoxFilterBy);
             this.groupBoxFilter.Controls.Add(this.labelBy);
-            this.groupBoxFilter.Location = new System.Drawing.Point(12, 53);
-            this.groupBoxFilter.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxFilter.Location = new System.Drawing.Point(22, 98);
+            this.groupBoxFilter.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxFilter.Name = "groupBoxFilter";
-            this.groupBoxFilter.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxFilter.Size = new System.Drawing.Size(923, 78);
+            this.groupBoxFilter.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxFilter.Size = new System.Drawing.Size(1692, 144);
             this.groupBoxFilter.TabIndex = 3;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Filters";
             // 
             // buttonView
             // 
-            this.buttonView.Location = new System.Drawing.Point(762, 33);
+            this.buttonView.Location = new System.Drawing.Point(1397, 61);
+            this.buttonView.Margin = new System.Windows.Forms.Padding(6);
             this.buttonView.Name = "buttonView";
-            this.buttonView.Size = new System.Drawing.Size(124, 26);
+            this.buttonView.Size = new System.Drawing.Size(227, 48);
             this.buttonView.TabIndex = 6;
             this.buttonView.Text = "View";
             this.buttonView.UseVisualStyleBackColor = true;
@@ -130,27 +131,28 @@
             // labelTo
             // 
             this.labelTo.AutoSize = true;
-            this.labelTo.Location = new System.Drawing.Point(504, 37);
-            this.labelTo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTo.Location = new System.Drawing.Point(924, 68);
+            this.labelTo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTo.Name = "labelTo";
-            this.labelTo.Size = new System.Drawing.Size(20, 13);
+            this.labelTo.Size = new System.Drawing.Size(36, 25);
             this.labelTo.TabIndex = 5;
             this.labelTo.Text = "To";
             // 
             // dateTimePickerToDate
             // 
-            this.dateTimePickerToDate.Location = new System.Drawing.Point(530, 35);
-            this.dateTimePickerToDate.Margin = new System.Windows.Forms.Padding(2);
+            this.dateTimePickerToDate.Location = new System.Drawing.Point(972, 65);
+            this.dateTimePickerToDate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerToDate.Name = "dateTimePickerToDate";
-            this.dateTimePickerToDate.Size = new System.Drawing.Size(202, 20);
+            this.dateTimePickerToDate.Size = new System.Drawing.Size(367, 29);
             this.dateTimePickerToDate.TabIndex = 3;
             // 
             // dataGridViewExpenses
             // 
             this.dataGridViewExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewExpenses.Location = new System.Drawing.Point(12, 152);
+            this.dataGridViewExpenses.Location = new System.Drawing.Point(22, 281);
+            this.dataGridViewExpenses.Margin = new System.Windows.Forms.Padding(6);
             this.dataGridViewExpenses.Name = "dataGridViewExpenses";
-            this.dataGridViewExpenses.Size = new System.Drawing.Size(574, 277);
+            this.dataGridViewExpenses.Size = new System.Drawing.Size(1052, 511);
             this.dataGridViewExpenses.TabIndex = 4;
             // 
             // groupBoxSummaryInfo
@@ -161,88 +163,101 @@
             this.groupBoxSummaryInfo.Controls.Add(this.labelSpentMost);
             this.groupBoxSummaryInfo.Controls.Add(this.labelTotalMoney);
             this.groupBoxSummaryInfo.Controls.Add(this.labelTotalItemCount);
-            this.groupBoxSummaryInfo.Location = new System.Drawing.Point(602, 152);
+            this.groupBoxSummaryInfo.Location = new System.Drawing.Point(1104, 281);
+            this.groupBoxSummaryInfo.Margin = new System.Windows.Forms.Padding(6);
             this.groupBoxSummaryInfo.Name = "groupBoxSummaryInfo";
-            this.groupBoxSummaryInfo.Size = new System.Drawing.Size(335, 183);
+            this.groupBoxSummaryInfo.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBoxSummaryInfo.Size = new System.Drawing.Size(614, 338);
             this.groupBoxSummaryInfo.TabIndex = 5;
             this.groupBoxSummaryInfo.TabStop = false;
             this.groupBoxSummaryInfo.Text = "Summary";
             // 
-            // labelTotalItemCount
+            // labelSpentMostValue
             // 
-            this.labelTotalItemCount.AutoSize = true;
-            this.labelTotalItemCount.Location = new System.Drawing.Point(112, 37);
-            this.labelTotalItemCount.Name = "labelTotalItemCount";
-            this.labelTotalItemCount.Size = new System.Drawing.Size(62, 13);
-            this.labelTotalItemCount.TabIndex = 0;
-            this.labelTotalItemCount.Text = "Total Items:";
-            // 
-            // labelTotalMoney
-            // 
-            this.labelTotalMoney.AutoSize = true;
-            this.labelTotalMoney.Location = new System.Drawing.Point(74, 88);
-            this.labelTotalMoney.Name = "labelTotalMoney";
-            this.labelTotalMoney.Size = new System.Drawing.Size(100, 13);
-            this.labelTotalMoney.TabIndex = 1;
-            this.labelTotalMoney.Text = "Total Money Spent:";
-            // 
-            // labelSpentMost
-            // 
-            this.labelSpentMost.AutoSize = true;
-            this.labelSpentMost.Location = new System.Drawing.Point(50, 139);
-            this.labelSpentMost.Name = "labelSpentMost";
-            this.labelSpentMost.Size = new System.Drawing.Size(117, 13);
-            this.labelSpentMost.TabIndex = 2;
-            this.labelSpentMost.Text = "Most Money Spent For:";
-            // 
-            // labelTotalItemCountValue
-            // 
-            this.labelTotalItemCountValue.AutoSize = true;
-            this.labelTotalItemCountValue.Location = new System.Drawing.Point(196, 37);
-            this.labelTotalItemCountValue.Name = "labelTotalItemCountValue";
-            this.labelTotalItemCountValue.Size = new System.Drawing.Size(10, 13);
-            this.labelTotalItemCountValue.TabIndex = 3;
-            this.labelTotalItemCountValue.Text = " ";
+            this.labelSpentMostValue.AutoSize = true;
+            this.labelSpentMostValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSpentMostValue.Location = new System.Drawing.Point(359, 257);
+            this.labelSpentMostValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelSpentMostValue.Name = "labelSpentMostValue";
+            this.labelSpentMostValue.Size = new System.Drawing.Size(17, 25);
+            this.labelSpentMostValue.TabIndex = 5;
+            this.labelSpentMostValue.Text = " ";
             // 
             // labelTotalMoneyValue
             // 
             this.labelTotalMoneyValue.AutoSize = true;
-            this.labelTotalMoneyValue.Location = new System.Drawing.Point(196, 86);
+            this.labelTotalMoneyValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalMoneyValue.Location = new System.Drawing.Point(359, 159);
+            this.labelTotalMoneyValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelTotalMoneyValue.Name = "labelTotalMoneyValue";
-            this.labelTotalMoneyValue.Size = new System.Drawing.Size(10, 13);
+            this.labelTotalMoneyValue.Size = new System.Drawing.Size(17, 25);
             this.labelTotalMoneyValue.TabIndex = 4;
             this.labelTotalMoneyValue.Text = " ";
             // 
-            // labelSpentMostValue
+            // labelTotalItemCountValue
             // 
-            this.labelSpentMostValue.AutoSize = true;
-            this.labelSpentMostValue.Location = new System.Drawing.Point(196, 139);
-            this.labelSpentMostValue.Name = "labelSpentMostValue";
-            this.labelSpentMostValue.Size = new System.Drawing.Size(10, 13);
-            this.labelSpentMostValue.TabIndex = 5;
-            this.labelSpentMostValue.Text = " ";
+            this.labelTotalItemCountValue.AutoSize = true;
+            this.labelTotalItemCountValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalItemCountValue.Location = new System.Drawing.Point(359, 68);
+            this.labelTotalItemCountValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelTotalItemCountValue.Name = "labelTotalItemCountValue";
+            this.labelTotalItemCountValue.Size = new System.Drawing.Size(17, 25);
+            this.labelTotalItemCountValue.TabIndex = 3;
+            this.labelTotalItemCountValue.Text = " ";
+            // 
+            // labelSpentMost
+            // 
+            this.labelSpentMost.AutoSize = true;
+            this.labelSpentMost.Location = new System.Drawing.Point(92, 257);
+            this.labelSpentMost.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelSpentMost.Name = "labelSpentMost";
+            this.labelSpentMost.Size = new System.Drawing.Size(217, 25);
+            this.labelSpentMost.TabIndex = 2;
+            this.labelSpentMost.Text = "Most Money Spent For:";
+            // 
+            // labelTotalMoney
+            // 
+            this.labelTotalMoney.AutoSize = true;
+            this.labelTotalMoney.Location = new System.Drawing.Point(136, 162);
+            this.labelTotalMoney.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelTotalMoney.Name = "labelTotalMoney";
+            this.labelTotalMoney.Size = new System.Drawing.Size(184, 25);
+            this.labelTotalMoney.TabIndex = 1;
+            this.labelTotalMoney.Text = "Total Money Spent:";
+            // 
+            // labelTotalItemCount
+            // 
+            this.labelTotalItemCount.AutoSize = true;
+            this.labelTotalItemCount.Location = new System.Drawing.Point(205, 68);
+            this.labelTotalItemCount.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelTotalItemCount.Name = "labelTotalItemCount";
+            this.labelTotalItemCount.Size = new System.Drawing.Size(114, 25);
+            this.labelTotalItemCount.TabIndex = 0;
+            this.labelTotalItemCount.Text = "Total Items:";
             // 
             // buttonEditExpense
             // 
-            this.buttonEditExpense.Location = new System.Drawing.Point(620, 403);
+            this.buttonEditExpense.Location = new System.Drawing.Point(1137, 744);
+            this.buttonEditExpense.Margin = new System.Windows.Forms.Padding(6);
             this.buttonEditExpense.Name = "buttonEditExpense";
-            this.buttonEditExpense.Size = new System.Drawing.Size(124, 26);
+            this.buttonEditExpense.Size = new System.Drawing.Size(227, 48);
             this.buttonEditExpense.TabIndex = 7;
             this.buttonEditExpense.Text = "Edit";
             this.buttonEditExpense.UseVisualStyleBackColor = true;
             // 
             // buttonDeleteExpense
             // 
-            this.buttonDeleteExpense.Location = new System.Drawing.Point(774, 403);
+            this.buttonDeleteExpense.Location = new System.Drawing.Point(1419, 744);
+            this.buttonDeleteExpense.Margin = new System.Windows.Forms.Padding(6);
             this.buttonDeleteExpense.Name = "buttonDeleteExpense";
-            this.buttonDeleteExpense.Size = new System.Drawing.Size(124, 26);
+            this.buttonDeleteExpense.Size = new System.Drawing.Size(227, 48);
             this.buttonDeleteExpense.TabIndex = 8;
             this.buttonDeleteExpense.Text = "Delete";
             this.buttonDeleteExpense.UseVisualStyleBackColor = true;
             // 
             // ReportUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonDeleteExpense);
             this.Controls.Add(this.buttonEditExpense);
@@ -250,9 +265,9 @@
             this.Controls.Add(this.dataGridViewExpenses);
             this.Controls.Add(this.groupBoxFilter);
             this.Controls.Add(this.labelExpenseReport);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ReportUserControl";
-            this.Size = new System.Drawing.Size(937, 488);
+            this.Size = new System.Drawing.Size(1718, 901);
             this.groupBoxFilter.ResumeLayout(false);
             this.groupBoxFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExpenses)).EndInit();

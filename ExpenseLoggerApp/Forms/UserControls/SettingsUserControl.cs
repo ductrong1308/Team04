@@ -1,8 +1,13 @@
 ﻿using ExpenseLoggerApp.Helpers;
+using ExpenseLoggerApp.Models;
 using ExpenseLoggerApp.Resources;
 using ExpenseLoggerDAL;
+using ExpenseLoggerDAL.BackupRestore;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,6 +16,12 @@ namespace ExpenseLoggerApp.Forms.UserControls
     public partial class SettingsUserControl : BaseUserControl
     {
         List<Category> categoriesData;
+
+        // field to keep the Backup and Restore layer
+        private ExpenseLoggerBackupRestore expenseLoggerBackupRestore;
+
+        // dataset will hold all tables being used
+        private DataSet expenseLoggerDataSet;
 
         public SettingsUserControl()
         {
@@ -25,11 +36,107 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
             LoadDataToCategoryGridView();
 
-            comboBoxCurrencies.SelectedIndexChanged += ComboBoxCurrencies_SelectedIndexChanged;
+            expenseLoggerBackupRestore = new ExpenseLoggerBackupRestore();
 
-            dataGridViewExpensesCategories.CellValueChanged += DataGridViewExpensesCategories_CellValueChanged;
-            dataGridViewExpensesCategories.DefaultValuesNeeded += DataGridViewExpensesCategories_DefaultValuesNeeded;
+
+            this.EstablishDBConnection();
+            this.InitializeDataSet();
+
+
+            buttonBackup.Click += ButtonBackup_Click;
+            buttonRestore.Click += ButtonRestore_Click;
+
+            // ensure that the connection to the db is closed
+            this.parentForm.FormClosing += (s, e) => expenseLoggerBackupRestore.CloseConnection();
+            this.HandleDestroyed += (s, e) => expenseLoggerBackupRestore.CloseConnection();
         }
+
+        private void ButtonRestore_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string xmlFileName = expenseLoggerDataSet.DataSetName + ".xml";
+                if (File.Exists(xmlFileName))
+                {
+                    expenseLoggerBackupRestore.RestoreDataSetFromBackup(expenseLoggerDataSet);
+                    ProcessRestoreData();
+                }
+                else
+                {
+                    MessageBox.Show(AppResource.BackupDataDoesNotExist);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                buttonBackup.Enabled = true;
+                buttonRestore.Enabled = true;
+            }
+        }
+
+        private void ProcessRestoreData()
+        {
+            buttonBackup.Enabled = false;
+            buttonRestore.Enabled = false;
+
+            for (int i = 0; i < expenseLoggerDataSet.Tables.Count; i++)
+            {
+                DataTable table = expenseLoggerDataSet.Tables[i];
+                foreach (DataRow row in table.Rows)
+                {
+                    expenseLoggerBackupRestore.InsertTableRow(row);
+                }
+            }
+            comboBoxCurrencies.SelectedIndexChanged -= ComboBoxCurrencies_SelectedIndexChanged;
+            dataGridViewExpensesCategories.CellValueChanged -= DataGridViewExpensesCategories_CellValueChanged;
+            dataGridViewExpensesCategories.DefaultValuesNeeded -= DataGridViewExpensesCategories_DefaultValuesNeeded;
+            LoadDataToComboBox();
+            LoadDataToCategoryGridView();
+
+            MessageBox.Show(AppResource.RestoreDone);
+        }
+
+        private void ButtonBackup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                expenseLoggerBackupRestore.BackupDataSetToXML(expenseLoggerDataSet);
+                MessageBox.Show(AppResource.BackupDone);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        private void EstablishDBConnection()
+        {
+            // Get and open connection to the DB
+            string connectionString = expenseLoggerBackupRestore.GetConnectionString("ExpenseLoggerConnection");
+            expenseLoggerBackupRestore.OpenConnection(connectionString);
+
+            expenseLoggerDataSet = new DataSet()
+            {
+                // must be named for backup purposes
+                DataSetName = "ExpenseLoggerDataSet",
+            };
+        }
+
+        private void InitializeDataSet()
+        {
+            // Get Data Table
+            List<string> tables = new List<string>() { "Users", "Categories", "Expenses", "Settings" };
+            foreach (var tableName in tables)
+            {
+                DataTable dataTable = expenseLoggerBackupRestore.GetDataTable(tableName);
+                expenseLoggerDataSet.Tables.Add(dataTable);
+            }
+        }
+
 
         private void DataGridViewExpensesCategories_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
@@ -63,22 +170,38 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
         private void ComboBoxCurrencies_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string currency = comboBoxCurrencies.SelectedItem.ToString();
+            string currency = (comboBoxCurrencies.SelectedItem as ComboboxItem).Value.ToString();
+
             this.parentForm.appCommands.AddOrUpdateCurrency(LoginInfo.UserId, currency);
 
             LoginInfo.Currency = currency;
-            LoginInfo.UserPreferenceCulture = CultureHelpers.UserPreferenceCulture(currency);
+            LoginInfo.UserPreferenceCulture = CultureHelper.UserPreferenceCulture(currency);
 
             MessageBox.Show(AppResource.DataSavedSuccessful);
         }
 
         public void LoadDataToComboBox()
         {
-            List<string> appCurrencyList = new List<string>() { "$", "€", "£" };
+            List<ComboboxItem> appCurrencyList = new List<ComboboxItem>()
+            {
+                new ComboboxItem() { Text = "Canadian Dollar", Value = "CAD" },
+                new ComboboxItem() { Text = "US Dollar", Value = "USD" },
+                new ComboboxItem() { Text = "Euro", Value = "EUR" },
+                new ComboboxItem() { Text = "Pound Sterling", Value = "GBP" },
+                new ComboboxItem() { Text = "Yuan", Value = "CNY" },
+                new ComboboxItem() { Text = "Yen", Value = "JPY" },
+            };
+
             comboBoxCurrencies.DataSource = appCurrencyList;
 
-            comboBoxCurrencies.SelectedIndex =
-                comboBoxCurrencies.FindStringExact(string.IsNullOrEmpty(LoginInfo.Currency) ? appCurrencyList.FirstOrDefault() : LoginInfo.Currency);
+            if (string.IsNullOrEmpty(LoginInfo.Currency))
+            {
+                LoginInfo.Currency = appCurrencyList.FirstOrDefault().Value.ToString();
+            }
+
+            comboBoxCurrencies.SelectedIndex = appCurrencyList.FindIndex(x => x.Value.ToString() == LoginInfo.Currency);
+            comboBoxCurrencies.SelectedIndexChanged += ComboBoxCurrencies_SelectedIndexChanged;
+
         }
 
         private void SetupCategoriesDataGridView()
@@ -120,6 +243,9 @@ namespace ExpenseLoggerApp.Forms.UserControls
             // Make column No read only. 
             // This is auto generated No
             dataGridViewExpensesCategories.Columns["No."].ReadOnly = true;
+
+            dataGridViewExpensesCategories.CellValueChanged += DataGridViewExpensesCategories_CellValueChanged;
+            dataGridViewExpensesCategories.DefaultValuesNeeded += DataGridViewExpensesCategories_DefaultValuesNeeded;
         }
     }
 }

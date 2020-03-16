@@ -61,7 +61,7 @@
             this.tabControlSignInSignUp.Controls.Add(this.tabSignIn);
             this.tabControlSignInSignUp.Controls.Add(this.tabSignUp);
             this.tabControlSignInSignUp.Location = new System.Drawing.Point(3, 1);
-            this.tabControlSignInSignUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControlSignInSignUp.Margin = new System.Windows.Forms.Padding(2);
             this.tabControlSignInSignUp.Name = "tabControlSignInSignUp";
             this.tabControlSignInSignUp.SelectedIndex = 0;
             this.tabControlSignInSignUp.Size = new System.Drawing.Size(554, 277);
@@ -75,9 +75,9 @@
             this.tabSignIn.Controls.Add(this.labelPassword);
             this.tabSignIn.Controls.Add(this.labelEmail);
             this.tabSignIn.Location = new System.Drawing.Point(4, 22);
-            this.tabSignIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabSignIn.Margin = new System.Windows.Forms.Padding(2);
             this.tabSignIn.Name = "tabSignIn";
-            this.tabSignIn.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabSignIn.Padding = new System.Windows.Forms.Padding(2);
             this.tabSignIn.Size = new System.Drawing.Size(546, 251);
             this.tabSignIn.TabIndex = 0;
             this.tabSignIn.Text = "Sign In";
@@ -86,7 +86,7 @@
             // buttonSignIn
             // 
             this.buttonSignIn.Location = new System.Drawing.Point(222, 173);
-            this.buttonSignIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSignIn.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSignIn.Name = "buttonSignIn";
             this.buttonSignIn.Size = new System.Drawing.Size(144, 22);
             this.buttonSignIn.TabIndex = 4;
@@ -96,7 +96,7 @@
             // textBoxPassword
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(222, 117);
-            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(144, 20);
             this.textBoxPassword.TabIndex = 3;
@@ -105,7 +105,7 @@
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(222, 69);
-            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxEmail.Multiline = true;
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(144, 19);
@@ -148,9 +148,9 @@
             this.tabSignUp.Controls.Add(this.labelLastName);
             this.tabSignUp.Controls.Add(this.labelFirstName);
             this.tabSignUp.Location = new System.Drawing.Point(4, 22);
-            this.tabSignUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabSignUp.Margin = new System.Windows.Forms.Padding(2);
             this.tabSignUp.Name = "tabSignUp";
-            this.tabSignUp.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabSignUp.Padding = new System.Windows.Forms.Padding(2);
             this.tabSignUp.Size = new System.Drawing.Size(546, 251);
             this.tabSignUp.TabIndex = 1;
             this.tabSignUp.Text = "Sign Up";
@@ -159,7 +159,7 @@
             // buttonSignUp
             // 
             this.buttonSignUp.Location = new System.Drawing.Point(242, 189);
-            this.buttonSignUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSignUp.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSignUp.Name = "buttonSignUp";
             this.buttonSignUp.Size = new System.Drawing.Size(133, 22);
             this.buttonSignUp.TabIndex = 13;
@@ -169,7 +169,7 @@
             // textBoxSignUpConfirmPassword
             // 
             this.textBoxSignUpConfirmPassword.Location = new System.Drawing.Point(369, 133);
-            this.textBoxSignUpConfirmPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxSignUpConfirmPassword.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxSignUpConfirmPassword.Name = "textBoxSignUpConfirmPassword";
             this.textBoxSignUpConfirmPassword.Size = new System.Drawing.Size(153, 20);
             this.textBoxSignUpConfirmPassword.TabIndex = 12;
@@ -178,7 +178,7 @@
             // textBoxSignUpPassword
             // 
             this.textBoxSignUpPassword.Location = new System.Drawing.Point(91, 136);
-            this.textBoxSignUpPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxSignUpPassword.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxSignUpPassword.Name = "textBoxSignUpPassword";
             this.textBoxSignUpPassword.Size = new System.Drawing.Size(153, 20);
             this.textBoxSignUpPassword.TabIndex = 11;
@@ -188,7 +188,7 @@
             // 
             this.radioButtonFemale.AutoSize = true;
             this.radioButtonFemale.Location = new System.Drawing.Point(463, 85);
-            this.radioButtonFemale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButtonFemale.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonFemale.Name = "radioButtonFemale";
             this.radioButtonFemale.Size = new System.Drawing.Size(59, 17);
             this.radioButtonFemale.TabIndex = 10;
@@ -201,7 +201,7 @@
             this.radioButtonMale.AutoSize = true;
             this.radioButtonMale.Checked = true;
             this.radioButtonMale.Location = new System.Drawing.Point(369, 87);
-            this.radioButtonMale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButtonMale.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonMale.Name = "radioButtonMale";
             this.radioButtonMale.Size = new System.Drawing.Size(48, 17);
             this.radioButtonMale.TabIndex = 9;
@@ -212,7 +212,7 @@
             // textBoxSignUpEmail
             // 
             this.textBoxSignUpEmail.Location = new System.Drawing.Point(91, 85);
-            this.textBoxSignUpEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxSignUpEmail.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxSignUpEmail.Multiline = true;
             this.textBoxSignUpEmail.Name = "textBoxSignUpEmail";
             this.textBoxSignUpEmail.Size = new System.Drawing.Size(153, 19);
@@ -221,7 +221,7 @@
             // textBoxLastName
             // 
             this.textBoxLastName.Location = new System.Drawing.Point(369, 35);
-            this.textBoxLastName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxLastName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxLastName.Multiline = true;
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(153, 19);
@@ -230,7 +230,7 @@
             // textBoxFirstName
             // 
             this.textBoxFirstName.Location = new System.Drawing.Point(91, 34);
-            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxFirstName.Multiline = true;
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(153, 19);
@@ -303,7 +303,7 @@
             this.ClientSize = new System.Drawing.Size(561, 278);
             this.Controls.Add(this.tabControlSignInSignUp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ExpenseLoggerSignInForm";

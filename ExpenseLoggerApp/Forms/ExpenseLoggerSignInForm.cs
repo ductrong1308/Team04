@@ -1,12 +1,10 @@
 ﻿using ExpenseLoggerApp.Helpers;
 using ExpenseLoggerApp.Resources;
-using ExpenseLoggerBLL.Commands;
-using ExpenseLoggerBLL.Queries;
 using ExpenseLoggerDAL;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace ExpenseLoggerApp.Forms
 {
@@ -22,10 +20,11 @@ namespace ExpenseLoggerApp.Forms
         {
             buttonSignIn.Click += ButtonSignIn_Click;
             buttonSignUp.Click += ButtonSignUp_Click;
-            textBoxPassword.KeyDown += TextBoxPassword_KeyDown;
+            textBoxPassword.KeyDown += EnterSignIn;
+            textBoxEmail.KeyDown += EnterSignIn;
         }
 
-        private void TextBoxPassword_KeyDown(object sender, KeyEventArgs e)
+        private void EnterSignIn(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -66,6 +65,10 @@ namespace ExpenseLoggerApp.Forms
                         new Category(){ Name = "Medical" },
                         new Category(){ Name = "Pets" },
                         new Category(){ Name = "Education" }
+                    },
+                    Settings = new List<Setting>()
+                    {
+                        new Setting(){ Name = "Currency", Value = "CAD" }
                     }
                 };
 
@@ -193,7 +196,7 @@ namespace ExpenseLoggerApp.Forms
             string currency = currencySetting == null ? "$" : currencySetting.Value;
 
             LoginInfo.Currency = currency;
-            LoginInfo.UserPreferenceCulture = CultureHelpers.UserPreferenceCulture(currency);
+            LoginInfo.UserPreferenceCulture = CultureHelper.UserPreferenceCulture(currency);
 
             // Close the current form and open the main form after logged in
             this.Hide();

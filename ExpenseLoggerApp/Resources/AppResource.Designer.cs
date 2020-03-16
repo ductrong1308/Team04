@@ -70,6 +70,24 @@ namespace ExpenseLoggerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup data does not exist!.
+        /// </summary>
+        internal static string BackupDataDoesNotExist {
+            get {
+                return ResourceManager.GetString("BackupDataDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your backup has completed successfully!.
+        /// </summary>
+        internal static string BackupDone {
+            get {
+                return ResourceManager.GetString("BackupDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ConfirmPassword.
         /// </summary>
         internal static string ConfirmPassword {
@@ -282,6 +300,15 @@ namespace ExpenseLoggerApp.Resources {
         internal static string RegistrationSuccessful {
             get {
                 return ResourceManager.GetString("RegistrationSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your data has been restored successfully!.
+        /// </summary>
+        internal static string RestoreDone {
+            get {
+                return ResourceManager.GetString("RestoreDone", resourceCulture);
             }
         }
         

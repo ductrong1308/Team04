@@ -107,10 +107,11 @@
     <Compile Include="Forms\UserControls\SettingsUserControl.Designer.cs">
       <DependentUpon>SettingsUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\CultureHelpers.cs" />
+    <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Helpers\ValidationHelper.cs" />
     <Compile Include="Helpers\LoginInfo.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
+    <Compile Include="Models\ComboboxItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResource.Designer.cs">
       <AutoGen>True</AutoGen>
