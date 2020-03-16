@@ -37,8 +37,6 @@
             this.buttonBackup = new System.Windows.Forms.Button();
             this.groupBoxExpensesCategory = new System.Windows.Forms.GroupBox();
             this.dataGridViewExpensesCategories = new System.Windows.Forms.DataGridView();
-            this.buttonEditCategory = new System.Windows.Forms.Button();
-            this.buttonDeleteCategory = new System.Windows.Forms.Button();
             this.groupBoxDefaultAppCurrency.SuspendLayout();
             this.groupBoxBackupRestore.SuspendLayout();
             this.groupBoxExpensesCategory.SuspendLayout();
@@ -72,7 +70,7 @@
             this.comboBoxCurrencies.FormattingEnabled = true;
             this.comboBoxCurrencies.Location = new System.Drawing.Point(245, 100);
             this.comboBoxCurrencies.Name = "comboBoxCurrencies";
-            this.comboBoxCurrencies.Size = new System.Drawing.Size(347, 32);
+            this.comboBoxCurrencies.Size = new System.Drawing.Size(199, 32);
             this.comboBoxCurrencies.TabIndex = 1;
             // 
             // labelCurrency
@@ -115,8 +113,6 @@
             // 
             // groupBoxExpensesCategory
             // 
-            this.groupBoxExpensesCategory.Controls.Add(this.buttonDeleteCategory);
-            this.groupBoxExpensesCategory.Controls.Add(this.buttonEditCategory);
             this.groupBoxExpensesCategory.Controls.Add(this.dataGridViewExpensesCategories);
             this.groupBoxExpensesCategory.Location = new System.Drawing.Point(825, 186);
             this.groupBoxExpensesCategory.Name = "groupBoxExpensesCategory";
@@ -128,31 +124,11 @@
             // dataGridViewExpensesCategories
             // 
             this.dataGridViewExpensesCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewExpensesCategories.Location = new System.Drawing.Point(35, 64);
+            this.dataGridViewExpensesCategories.Location = new System.Drawing.Point(35, 58);
             this.dataGridViewExpensesCategories.Name = "dataGridViewExpensesCategories";
             this.dataGridViewExpensesCategories.RowTemplate.Height = 31;
-            this.dataGridViewExpensesCategories.Size = new System.Drawing.Size(762, 462);
+            this.dataGridViewExpensesCategories.Size = new System.Drawing.Size(762, 551);
             this.dataGridViewExpensesCategories.TabIndex = 0;
-            // 
-            // buttonEditCategory
-            // 
-            this.buttonEditCategory.Location = new System.Drawing.Point(146, 561);
-            this.buttonEditCategory.Margin = new System.Windows.Forms.Padding(6);
-            this.buttonEditCategory.Name = "buttonEditCategory";
-            this.buttonEditCategory.Size = new System.Drawing.Size(227, 48);
-            this.buttonEditCategory.TabIndex = 7;
-            this.buttonEditCategory.Text = "Edit";
-            this.buttonEditCategory.UseVisualStyleBackColor = true;
-            // 
-            // buttonDeleteCategory
-            // 
-            this.buttonDeleteCategory.Location = new System.Drawing.Point(454, 561);
-            this.buttonDeleteCategory.Margin = new System.Windows.Forms.Padding(6);
-            this.buttonDeleteCategory.Name = "buttonDeleteCategory";
-            this.buttonDeleteCategory.Size = new System.Drawing.Size(227, 48);
-            this.buttonDeleteCategory.TabIndex = 8;
-            this.buttonDeleteCategory.Text = "Delete";
-            this.buttonDeleteCategory.UseVisualStyleBackColor = true;
             // 
             // SettingsUserControl
             // 
@@ -185,7 +161,5 @@
         private System.Windows.Forms.Button buttonBackup;
         private System.Windows.Forms.GroupBox groupBoxExpensesCategory;
         private System.Windows.Forms.DataGridView dataGridViewExpensesCategories;
-        private System.Windows.Forms.Button buttonDeleteCategory;
-        private System.Windows.Forms.Button buttonEditCategory;
     }
 }

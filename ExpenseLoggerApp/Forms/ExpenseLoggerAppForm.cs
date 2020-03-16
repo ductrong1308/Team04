@@ -1,17 +1,8 @@
 ﻿using ExpenseLoggerApp.Forms;
 using ExpenseLoggerApp.Forms.UserControls;
 using ExpenseLoggerApp.Helpers;
-using ExpenseLoggerApp.Resources;
-using ExpenseLoggerBLL.Commands;
-using ExpenseLoggerBLL.Queries;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExpenseLoggerApp
@@ -21,17 +12,26 @@ namespace ExpenseLoggerApp
         public ExpenseLoggerAppForm()
         {
             InitializeComponent();
-            this.appQueries = new ExpenseLoggerQueries();
-            this.appCommands = new ExpenseLoggerCommands();
 
             buttonHome.Click += ButtonHome_Click;
             buttonReport.Click += ButtonReport_Click;
             buttonStatistics.Click += ButtonStatistics_Click;
             buttonSettings.Click += ButtonSettings_Click;
+            linkLabelSignOut.Click += LinkLabelSignOut_Click;
+
+            labelUserName.Text = "Hi, " + LoginInfo.UserFirstName;
 
             // Load Home User Control
             HomeUserControl homeUserControl = new HomeUserControl();
             SwitchView(homeUserControl, buttonHome);
+        }
+
+        private void LinkLabelSignOut_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ExpenseLoggerSignInForm signInForm = new ExpenseLoggerSignInForm();
+            signInForm.ShowDialog();
+            this.Close();
         }
 
         private void ButtonSettings_Click(object sender, EventArgs e)
@@ -85,6 +85,5 @@ namespace ExpenseLoggerApp
             newView.Dock = DockStyle.Fill;
             SetColor(clickedButton);
         }
-
     }
 }

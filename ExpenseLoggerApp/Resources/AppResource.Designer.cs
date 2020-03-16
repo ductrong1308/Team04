@@ -277,6 +277,15 @@ namespace ExpenseLoggerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registration was successful!.
+        /// </summary>
+        internal static string RegistrationSuccessful {
+            get {
+                return ResourceManager.GetString("RegistrationSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign In.
         /// </summary>
         internal static string SignIn {

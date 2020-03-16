@@ -73,7 +73,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
             var firstDayOfYear = new DateTime(year, 1, 1);
             var lastDayOfYear = firstDayOfYear.AddYears(1).AddDays(-1);
 
-            List<Expense> expensesData = this.parentForm.appQueries.FilterExpensesByDate(firstDayOfYear, lastDayOfYear);
+            List<Expense> expensesData = this.parentForm.appQueries
+                .FilterExpensesByDate(LoginInfo.UserId, firstDayOfYear, lastDayOfYear);
             var groupedExpensesData = expensesData.GroupBy(x => x.CreatedDate.Month).Select(x => new
             {
                 MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.Key),

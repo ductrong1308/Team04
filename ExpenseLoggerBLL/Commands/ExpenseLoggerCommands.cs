@@ -31,7 +31,8 @@ namespace ExpenseLoggerBLL.Commands
         {
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
-                Expense selectedItem = context.Expenses.FirstOrDefault(x => x.Id == selectedExpense.Id);
+                Expense selectedItem = context.Expenses
+                    .FirstOrDefault(x => x.Id == selectedExpense.Id && x.UserID == selectedExpense.UserID);
                 if (selectedItem != null)
                 {
                     context.Expenses.Remove(selectedItem);
@@ -44,10 +45,14 @@ namespace ExpenseLoggerBLL.Commands
         {
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
-                Expense selectedItem = context.Expenses.FirstOrDefault(x => x.Id == existingExpense.Id);
-                selectedItem.CategoryName = existingExpense.CategoryName;
-                selectedItem.Amount = existingExpense.Amount;
-                selectedItem.CreatedDate = existingExpense.CreatedDate;
+                Expense selectedItem = context.Expenses
+                    .FirstOrDefault(x => x.Id == existingExpense.Id && x.UserID == existingExpense.UserID);
+                if(selectedItem != null)
+                {
+                    selectedItem.CategoryName = existingExpense.CategoryName;
+                    selectedItem.Amount = existingExpense.Amount;
+                    selectedItem.CreatedDate = existingExpense.CreatedDate;
+                }
 
                 context.SaveChanges();
             }
@@ -73,6 +78,36 @@ namespace ExpenseLoggerBLL.Commands
                     context.Settings.Add(newSetting);
                 }
 
+                context.SaveChanges();
+            }
+        }
+
+        public void UpdateCategory(int userId, int categoryId, string newCategoryName)
+        {
+            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
+            {
+                Category category = context.Categories.Where(x => x.Id == categoryId && x.UserID == userId)
+                    .FirstOrDefault();
+                if(category != null)
+                {
+                    category.Name = newCategoryName;
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        public void AddCategory(int userId, string categoryName)
+        {
+            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
+            {
+                Category category = new Category()
+                {
+                    Name = categoryName,
+                    UserID = userId
+                };
+
+                context.Categories.Add(category);
                 context.SaveChanges();
             }
         }

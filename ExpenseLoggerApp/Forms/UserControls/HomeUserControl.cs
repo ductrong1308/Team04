@@ -1,4 +1,5 @@
-﻿using ExpenseLoggerApp.Resources;
+﻿using ExpenseLoggerApp.Helpers;
+using ExpenseLoggerApp.Resources;
 using ExpenseLoggerDAL;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             buttonAddNewExpense.Click += ButtonAddNewExpense_Click;
             buttonClear.Click += ButtonClear_Click;
 
-            // TODO: replace 1 = LoginInfo.UserId
-            expenseCategories = this.parentForm.appQueries.GetExpenseCategories(1);
+            expenseCategories = this.parentForm.appQueries.GetExpenseCategories(LoginInfo.UserId);
             comboBoxCategories.DataSource = expenseCategories;
         }
 
@@ -47,8 +47,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
                     Amount = amount,
                     CategoryName = category,
                     CreatedDate = expensesCreatedDate,
-                    // TODO
-                    UserID = 1
+                    UserID = LoginInfo.UserId
                 });
 
                 if (isDataSavedSuccessful)

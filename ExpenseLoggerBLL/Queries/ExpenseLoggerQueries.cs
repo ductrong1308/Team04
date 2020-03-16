@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
 using System.Linq;
 
 namespace ExpenseLoggerBLL.Queries
@@ -37,13 +36,13 @@ namespace ExpenseLoggerBLL.Queries
             }
         }
 
-        public List<Expense> FilterExpensesByDate(DateTime fromDate, DateTime toDate)
+        public List<Expense> FilterExpensesByDate(int userId, DateTime fromDate, DateTime toDate)
         {
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
                 return context.Expenses
                     .Where(x => DbFunctions.TruncateTime(x.CreatedDate) >= fromDate.Date 
-                        && DbFunctions.TruncateTime(x.CreatedDate) <= toDate.Date)
+                        && DbFunctions.TruncateTime(x.CreatedDate) <= toDate.Date && x.UserID == userId)
                     .OrderBy(x=> x.CreatedDate)
                     .ToList();
             }

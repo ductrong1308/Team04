@@ -69,14 +69,22 @@ namespace ExpenseLoggerApp.Forms
                     LastName = lastName,
                     EmailAddress = email,
                     Password = PasswordHelper.Encrypt(password),
-                    Gender = radioButtonMale.Checked
+                    Gender = radioButtonMale.Checked,
+                    Categories = new List<Category>()
+                    {
+                        new Category(){ Name = "Meals" },
+                        new Category(){ Name = "Transportation" },
+                        new Category(){ Name = "Housing" },
+                        new Category(){ Name = "Entertainment" }
+                    }
                 };
 
                 bool isNewUserAdded = appCommands.AddNewUser(newUser);
 
                 if (isNewUserAdded)
                 {
-                    this.OpenExpenseLoggerAppForm(newUser);
+                    MessageBox.Show(AppResource.RegistrationSuccessful);
+                    tabControlSignInSignUp.SelectedTab = tabSignIn;
                 }
                 else
                 {

@@ -1,16 +1,9 @@
 ﻿using ExpenseLoggerApp.Forms.UserControls;
+using ExpenseLoggerApp.Helpers;
 using ExpenseLoggerApp.Resources;
-using ExpenseLoggerBLL.Commands;
-using ExpenseLoggerBLL.Queries;
 using ExpenseLoggerDAL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExpenseLoggerApp.Forms
@@ -33,8 +26,7 @@ namespace ExpenseLoggerApp.Forms
             Expense expense = ReportUserControl.selectedExpense;
             if (expense != null)
             {
-                // TODO: replace 1 = LoginInfo.UserId
-                List<string> expenseCategories = this.appQueries.GetExpenseCategories(1);
+                List<string> expenseCategories = this.appQueries.GetExpenseCategories(LoginInfo.UserId);
                 comboBoxCategories.DataSource = expenseCategories;
                 comboBoxCategories.SelectedIndex = comboBoxCategories.FindStringExact(expense.CategoryName);
 

@@ -14,7 +14,7 @@ namespace ExpenseLoggerApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ExpenseLoggerAppForm());
+            Application.Run(new ExpenseLoggerSignInForm());
         }
     }
 }

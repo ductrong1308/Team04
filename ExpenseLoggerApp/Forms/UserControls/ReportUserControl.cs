@@ -42,7 +42,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             // Adding DataGridView columns
             DataGridViewColumn[] columns = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn(){ Name = "Money Spent For", SortMode = DataGridViewColumnSortMode.NotSortable },
+                new DataGridViewTextBoxColumn(){ Name = "Category", SortMode = DataGridViewColumnSortMode.NotSortable },
                 new DataGridViewTextBoxColumn(){ Name = "Amount", SortMode = DataGridViewColumnSortMode.NotSortable },
                 new DataGridViewTextBoxColumn(){ Name = "Date", SortMode = DataGridViewColumnSortMode.NotSortable }
             };
@@ -163,7 +163,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             else
             {
                 expensesData = this.parentForm.appQueries.FilterExpensesByDate(
-                    dateTimePickerFromDate.Value.Date, dateTimePickerToDate.Value.Date);
+                    LoginInfo.UserId, dateTimePickerFromDate.Value.Date, dateTimePickerToDate.Value.Date);
                 DisplayExpensesData(expensesData);
             }
         }
