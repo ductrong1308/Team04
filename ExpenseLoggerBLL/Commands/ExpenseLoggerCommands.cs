@@ -52,5 +52,29 @@ namespace ExpenseLoggerBLL.Commands
                 context.SaveChanges();
             }
         }
+
+        public void AddOrUpdateCurrency(int userId, string newCurrency)
+        {
+            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
+            {
+                var userCurrency = context.Settings.FirstOrDefault(x => x.Name.Trim().ToLower() == "currency");
+                if (userCurrency != null)
+                {
+                    userCurrency.Value = newCurrency;
+                }
+                else
+                {
+                    Setting newSetting = new Setting()
+                    {
+                        Name = "Currency",
+                        Value = newCurrency,
+                        UserID = userId
+                    };
+                    context.Settings.Add(newSetting);
+                }
+
+                context.SaveChanges();
+            }
+        }
     }
 }

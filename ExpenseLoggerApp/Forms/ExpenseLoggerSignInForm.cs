@@ -4,7 +4,9 @@ using ExpenseLoggerBLL.Commands;
 using ExpenseLoggerBLL.Queries;
 using ExpenseLoggerDAL;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace ExpenseLoggerApp.Forms
 {
@@ -159,6 +161,14 @@ namespace ExpenseLoggerApp.Forms
             LoginInfo.UserId = loggedInUser.Id;
             LoginInfo.UserFirstName = loggedInUser.FirstName;
             LoginInfo.UserLastName = loggedInUser.LastName;
+
+
+            List<Setting> userSettings = appQueries.GetUserSettings(loggedInUser.Id);
+            Setting currencySetting = userSettings.FirstOrDefault(x => x.Name.Trim().ToLower() == "currency");
+            string currency = currencySetting == null ? "$" : currencySetting.Value;
+
+            LoginInfo.Currency = currency;
+            LoginInfo.UserPreferenceCulture = CultureHelpers.UserPreferenceCulture(currency);
 
             // Close the current form and open the main form after logged in
             this.Hide();

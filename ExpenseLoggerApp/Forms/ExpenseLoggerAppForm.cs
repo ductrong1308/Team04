@@ -36,7 +36,8 @@ namespace ExpenseLoggerApp
 
         private void ButtonSettings_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SettingsUserControl statisticsUserControl = new SettingsUserControl();
+            SwitchView(statisticsUserControl, ((Button)sender));
         }
 
         private void ButtonStatistics_Click(object sender, EventArgs e)

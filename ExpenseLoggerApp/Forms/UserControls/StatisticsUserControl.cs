@@ -1,4 +1,5 @@
-﻿using ExpenseLoggerApp.Resources;
+﻿using ExpenseLoggerApp.Helpers;
+using ExpenseLoggerApp.Resources;
 using ExpenseLoggerDAL;
 using System;
 using System.Collections.Generic;
@@ -88,14 +89,12 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
             if (!groupedExpensesData.Any())
             {
-                chartExpenseStatistics.Titles.Add(AppResource.NoDataFound)
-                    .TextStyle = TextStyle.Frame;
+                chartExpenseStatistics.Titles.Add(AppResource.NoDataFound);
             }
             else
             {
                 chartExpenseStatistics.Titles
-                    .Add("Total Spent: " + groupedExpensesData.Sum(x => x.TotalMoneySpent).ToString("C"))
-                    .TextStyle = TextStyle.Frame;
+                    .Add("Total Spent: " + groupedExpensesData.Sum(x => x.TotalMoneySpent).ToString("C", LoginInfo.UserPreferenceCulture));
 
                 foreach (var groupExpense in groupedExpensesData)
                 {

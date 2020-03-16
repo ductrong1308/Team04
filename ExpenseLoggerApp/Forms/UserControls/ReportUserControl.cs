@@ -1,4 +1,5 @@
-﻿using ExpenseLoggerApp.Resources;
+﻿using ExpenseLoggerApp.Helpers;
+using ExpenseLoggerApp.Resources;
 using ExpenseLoggerDAL;
 using System;
 using System.Collections.Generic;
@@ -171,11 +172,11 @@ namespace ExpenseLoggerApp.Forms.UserControls
         {
             dataGridViewExpenses.Rows.Clear();
 
-            expenses.Select(x => new string[] { x.CategoryName, x.Amount.ToString(), x.CreatedDate.ToString("MMM/dd/yyyy H:mm tt") })
+            expenses.Select(x => new string[] { x.CategoryName, x.Amount.ToString("C", LoginInfo.UserPreferenceCulture), x.CreatedDate.ToString("MMM/dd/yyyy H:mm tt") })
                 .ToList().ForEach(x => dataGridViewExpenses.Rows.Add(x));
 
             labelTotalItemCountValue.Text = expenses.Count.ToString("n0");
-            labelTotalMoneyValue.Text = expenses.Sum(x => x.Amount).ToString("c");
+            labelTotalMoneyValue.Text = expenses.Sum(x => x.Amount).ToString("C", LoginInfo.UserPreferenceCulture);
 
             var spentMostOnItem = expenses.GroupBy(x => x.CategoryName).Select(x => new
             {

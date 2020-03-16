@@ -48,5 +48,21 @@ namespace ExpenseLoggerBLL.Queries
                     .ToList();
             }
         }
+
+        public List<Setting> GetUserSettings(int userId)
+        {
+            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
+            {
+                return context.Settings.Where(x => x.UserID == userId).ToList();
+            }
+        }
+
+        public List<Category> GetExpensesCategoriesByUserId(int userId)
+        {
+            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
+            {
+                return context.Categories.Where(x => x.UserID == userId).ToList();
+            }
+        }
     }
 }
