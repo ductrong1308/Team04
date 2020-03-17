@@ -2,6 +2,10 @@
 
 namespace ExpenseLoggerApp.Helpers
 {
+    /// <summary>
+    /// This is a shared class which used to store user information 
+    /// This will be used cross class in the application.
+    /// </summary>
     public static class LoginInfo
     {
         public static int UserId { get; set; }

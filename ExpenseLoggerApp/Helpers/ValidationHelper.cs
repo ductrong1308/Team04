@@ -2,8 +2,16 @@
 
 namespace ExpenseLoggerApp.Helpers
 {
+    /// <summary>
+    /// This class contains methods which help the system to validate user's data.
+    /// </summary>
     public static class ValidationHelper
     {
+        /// <summary>
+        /// Validate email address.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static bool IsValidEmail(string email)
         {
             try

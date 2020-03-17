@@ -5,9 +5,19 @@ using System.Text;
 
 namespace ExpenseLoggerApp.Helpers
 {
+    /// <summary>
+    /// This class help to encypt and decrypt user's password.
+    /// </summary>
     public static class PasswordHelper
     {
+        // a random encryption key.
         private static string encryptionKey = "613b3bc9-878b-4e46-9da1-e3e1290f5bd1";
+
+        /// <summary>
+        /// Encrypt a normal string.
+        /// </summary>
+        /// <param name="clearText"></param>
+        /// <returns></returns>
         public static string Encrypt(string clearText)
         {
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
@@ -30,6 +40,12 @@ namespace ExpenseLoggerApp.Helpers
 
             return clearText;
         }
+
+        /// <summary>
+        /// Decrypt the encrypted password to a normal string.
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <returns></returns>
         public static string Decrypt(string cipherText)
         {
             cipherText = cipherText.Replace(" ", "+");
