@@ -88,6 +88,15 @@ namespace ExpenseLoggerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category cannot be null!.
+        /// </summary>
+        internal static string CategoryIsRequired {
+            get {
+                return ResourceManager.GetString("CategoryIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ConfirmPassword.
         /// </summary>
         internal static string ConfirmPassword {
@@ -259,7 +268,7 @@ namespace ExpenseLoggerApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select an expense item in the data grid view!.
+        ///   Looks up a localized string similar to No Item Selected!.
         /// </summary>
         internal static string NoExpenseItemSelected {
             get {
@@ -327,6 +336,15 @@ namespace ExpenseLoggerApp.Resources {
         internal static string SignUp {
             get {
                 return ResourceManager.GetString("SignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total spent: .
+        /// </summary>
+        internal static string TotalSpent {
+            get {
+                return ResourceManager.GetString("TotalSpent", resourceCulture);
             }
         }
     }

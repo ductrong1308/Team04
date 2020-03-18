@@ -28,10 +28,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             SetFormControlsToDefaultState();
 
             // Bind data to ComboBox
-            comboBoxFilterBy.DataSource = new List<string>()
-            {
-                "Today", "This Week", "This Month", "This Year", "Date Range"
-            };
+            comboBoxFilterBy.DataSource = AppDefaultValues.FiltersByDate;
 
             // DataGridView settings
             dataGridViewExpenses.ReadOnly = true;
@@ -198,10 +195,6 @@ namespace ExpenseLoggerApp.Forms.UserControls
             {
                 // Store the selected expense to a variable, which will be used later on.
                 selectedExpense = expensesData[rowIndex];
-
-                // Enable edit and delete button when user has selected an item on the dataGridView.
-                buttonEditExpense.Enabled = true;
-                buttonDeleteExpense.Enabled = true;
             }
         }
 
@@ -218,7 +211,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             {
                 // Call service in BLL
                 expensesData = this.parentForm.appQueries.FilterExpensesByDate(
-                    LoginInfo.UserId, dateTimePickerFromDate.Value.Date, dateTimePickerToDate.Value.Date);
+                    UserIdentity.Instance.UserId, dateTimePickerFromDate.Value.Date, dateTimePickerToDate.Value.Date);
 
                 // Display data.
                 DisplayExpensesData(expensesData);
@@ -231,14 +224,17 @@ namespace ExpenseLoggerApp.Forms.UserControls
         /// <param name="expenses"></param>
         private void DisplayExpensesData(List<Expense> expenses)
         {
+            // De-register dataGridView selectionChanged event before rebinding data to the grid.
+            dataGridViewExpenses.SelectionChanged -= DataGridViewExpenses_SelectionChanged;
+
             dataGridViewExpenses.Rows.Clear();
 
-            expenses.Select(x => new string[] { x.CategoryName, x.Amount.ToString("C", LoginInfo.UserPreferenceCulture), x.CreatedDate.ToString("MMM/dd/yyyy H:mm tt") })
+            expenses.Select(x => new string[] { x.CategoryName, x.Amount.ToString("C", UserIdentity.Instance.UserPreferenceCulture), x.CreatedDate.ToString("MMM/dd/yyyy H:mm tt") })
                 .ToList().ForEach(x => dataGridViewExpenses.Rows.Add(x));
 
             // Format data before showing.
             labelTotalItemCountValue.Text = expenses.Count.ToString("n0");
-            labelTotalMoneyValue.Text = expenses.Sum(x => x.Amount).ToString("C", LoginInfo.UserPreferenceCulture);
+            labelTotalMoneyValue.Text = expenses.Sum(x => x.Amount).ToString("C", UserIdentity.Instance.UserPreferenceCulture);
 
             // Using LINQ to retrieve some useful information and display on the summary section.
             var spentMostOnItem = expenses.GroupBy(x => x.CategoryName).Select(x => new
@@ -252,6 +248,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
                 labelSpentMostValue.Text = spentMostOnItem.GroupName;
             }
 
+            selectedExpense = expensesData.FirstOrDefault();
+
             // Register datagridview selection changed event after data rendered.
             dataGridViewExpenses.SelectionChanged += DataGridViewExpenses_SelectionChanged;
         }
@@ -261,9 +259,6 @@ namespace ExpenseLoggerApp.Forms.UserControls
         /// </summary>
         private void SetFormControlsToDefaultState()
         {
-            buttonEditExpense.Enabled = false;
-            buttonDeleteExpense.Enabled = false;
-
             // Set data to default
             expensesData = null;
             selectedExpense = null;

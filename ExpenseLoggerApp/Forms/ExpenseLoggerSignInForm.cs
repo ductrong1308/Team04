@@ -73,19 +73,14 @@ namespace ExpenseLoggerApp.Forms
                     EmailAddress = email,
                     Password = PasswordHelper.Encrypt(password),
                     Gender = radioButtonMale.Checked,
-                    Categories = new List<Category>()
-                    {
-                        new Category(){ Name = "Meals" },
-                        new Category(){ Name = "Transportation" },
-                        new Category(){ Name = "Housing" },
-                        new Category(){ Name = "Entertainment" },
-                        new Category(){ Name = "Medical" },
-                        new Category(){ Name = "Pets" },
-                        new Category(){ Name = "Education" }
-                    },
+                    Categories = AppDefaultValues.ExpenseCategories,
                     Settings = new List<Setting>()
                     {
-                        new Setting(){ Name = "Currency", Value = "CAD" }
+                        new Setting()
+                        {
+                            Name = "Currency",
+                            Value = AppDefaultValues.Currencies.FirstOrDefault().Value.ToString()
+                        }
                     }
                 };
 
@@ -116,29 +111,46 @@ namespace ExpenseLoggerApp.Forms
             string email = textBoxEmail.Text;
             string password = textBoxPassword.Text;
 
-            // Check user email and password.
-            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+            try
             {
-                // Encrypt password before getting user info and compare the email and password..
-                string encryptedPassword = PasswordHelper.Encrypt(password);
-                User loggedInUser = appQueries.GetUserByEmailAndPassword(email, encryptedPassword);
+                // Disable SignIn button while in log in process.
+                buttonSignIn.Enabled = false;
 
-                if (loggedInUser == null)
+                // Check user email and password.
+                if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
                 {
-                    // User logged in fail.
-                    MessageBox.Show(AppResource.InvalidLoginInfo);
+                    // Encrypt password before getting user info and compare the email and password..
+                    string encryptedPassword = PasswordHelper.Encrypt(password);
+                    User loggedInUser = appQueries.GetUserByEmailAndPassword(email, encryptedPassword);
+
+                    if (loggedInUser == null)
+                    {
+                        // User logged in fail.
+                        MessageBox.Show(AppResource.InvalidLoginInfo);
+                    }
+                    else
+                    {
+                        // User logged in.
+                        this.OpenExpenseLoggerAppForm(loggedInUser);
+                    }
                 }
                 else
                 {
-                    // User logged in.
-                    this.OpenExpenseLoggerAppForm(loggedInUser);
+                    // Display error sign when user missed entering data to the login form.
+                    this.ValidateSignInForm(email, password);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                // Display error sign when user missed entering data to the login form.
-                this.ValidateSignInForm(email, password);
+
+                MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                // Re-activate signin button in any cases.
+                buttonSignIn.Enabled = true;
+            }
+
         }
 
         /// <summary>
@@ -242,16 +254,17 @@ namespace ExpenseLoggerApp.Forms
         private void OpenExpenseLoggerAppForm(User loggedInUser)
         {
             // Storing user information for later use.
-            LoginInfo.UserId = loggedInUser.Id;
-            LoginInfo.UserFirstName = loggedInUser.FirstName;
-            LoginInfo.UserLastName = loggedInUser.LastName;
+            UserIdentity.Instance.UserId = loggedInUser.Id;
+            UserIdentity.Instance.FirstName = loggedInUser.FirstName;
+            UserIdentity.Instance.LastName = loggedInUser.LastName;
 
             List<Setting> userSettings = appQueries.GetUserSettings(loggedInUser.Id);
             Setting currencySetting = userSettings.FirstOrDefault(x => x.Name.Trim().ToLower() == "currency");
-            string currency = currencySetting == null ? "$" : currencySetting.Value;
+            string currency = currencySetting == null
+                ? AppDefaultValues.Currencies.FirstOrDefault().Text : currencySetting.Value;
 
-            LoginInfo.Currency = currency;
-            LoginInfo.UserPreferenceCulture = CultureHelper.UserPreferenceCulture(currency);
+            UserIdentity.Instance.Currency = currency;
+            UserIdentity.Instance.UserPreferenceCulture = CultureHelper.UserPreferenceCulture(currency);
 
             // Close the current form and open the main form after logged in
             this.Hide();

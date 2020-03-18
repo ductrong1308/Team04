@@ -50,7 +50,7 @@ namespace ExpenseLoggerApp.Helpers
                 {
                     NumberFormat =
                     {
-                        CurrencySymbol = regionInfo.ISOCurrencySymbol,
+                        CurrencySymbol = regionInfo.CurrencySymbol,
                         // make sure, the symbol is placed in front of the number with an additional empty space
                         CurrencyPositivePattern = 2,
                         //does the same for negative values

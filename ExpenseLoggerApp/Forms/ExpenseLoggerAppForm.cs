@@ -14,7 +14,7 @@ namespace ExpenseLoggerApp
             InitializeComponent();
 
             // Showing a label with user's firstName when they logged in.
-            labelUserName.Text = "Hi, " + LoginInfo.UserFirstName;
+            labelUserName.Text = "Hi, " + UserIdentity.Instance.FirstName;
 
             // Load Home User Control
             HomeUserControl homeUserControl = new HomeUserControl();

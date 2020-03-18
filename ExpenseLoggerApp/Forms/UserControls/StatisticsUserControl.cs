@@ -88,9 +88,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
             comboBoxYears.SelectedIndex = comboBoxYears.FindStringExact(year.ToString());
 
             // Combobox Chart Type
-            List<string> chartTypes = new List<string>() { "Column", "Line", "Pie" };
-            comboBoxChartType.DataSource = chartTypes;
-            comboBoxChartType.SelectedIndex = comboBoxChartType.FindStringExact(chartTypes.First());
+            comboBoxChartType.DataSource = AppDefaultValues.ChartTypes;
+            comboBoxChartType.SelectedIndex = comboBoxChartType.FindStringExact(AppDefaultValues.ChartTypes.FirstOrDefault());
         }
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
             // Calling service in the BLL to get the data.
             List<Expense> expensesData = this.parentForm.appQueries
-                .FilterExpensesByDate(LoginInfo.UserId, firstDayOfYear, lastDayOfYear);
+                .FilterExpensesByDate(UserIdentity.Instance.UserId, firstDayOfYear, lastDayOfYear);
 
             // Grouping data by month.
             var groupedExpensesData = expensesData.GroupBy(x => x.CreatedDate.Month).Select(x => new
@@ -132,7 +131,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
             {
                 // Setup and display data on the chart.
                 chartExpenseStatistics.Titles
-                    .Add("Total Spent: " + groupedExpensesData.Sum(x => x.TotalMoneySpent).ToString("C", LoginInfo.UserPreferenceCulture));
+                    .Add(AppResource.TotalSpent + groupedExpensesData.Sum(x => x.TotalMoneySpent)
+                    .ToString("C", UserIdentity.Instance.UserPreferenceCulture));
 
                 foreach (var groupExpense in groupedExpensesData)
                 {

@@ -126,6 +126,9 @@
   <data name="BackupDone" xml:space="preserve">
     <value>Your backup has completed successfully!</value>
   </data>
+  <data name="CategoryIsRequired" xml:space="preserve">
+    <value>Category cannot be null!</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>ConfirmPassword</value>
   </data>
@@ -184,7 +187,7 @@
     <value>No data found!</value>
   </data>
   <data name="NoExpenseItemSelected" xml:space="preserve">
-    <value>Please select an expense item in the data grid view!</value>
+    <value>No Item Selected!</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
@@ -206,5 +209,8 @@
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Sign Up</value>
+  </data>
+  <data name="TotalSpent" xml:space="preserve">
+    <value>Total spent: </value>
   </data>
 </root>

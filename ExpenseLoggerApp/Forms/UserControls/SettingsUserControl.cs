@@ -38,19 +38,9 @@ namespace ExpenseLoggerApp.Forms.UserControls
             // Initialize ExpenseLoggerBackupRestore, which is responsible for doing backup and restore functions.
             expenseLoggerBackupRestore = new ExpenseLoggerBackupRestore();
 
-            // This Connection for Backup and Restore DB
-            this.EstablishDBConnection();
-
-            // Initialize dataset which will be used to store all datatable.
-            this.InitializeDataSet();
-
             // Register button event.
             buttonBackup.Click += ButtonBackup_Click;
             buttonRestore.Click += ButtonRestore_Click;
-
-            // ensure that the connection to the db is closed
-            this.parentForm.FormClosing += (s, e) => expenseLoggerBackupRestore.CloseConnection();
-            this.HandleDestroyed += (s, e) => expenseLoggerBackupRestore.CloseConnection();
         }
 
         /// <summary>
@@ -62,12 +52,26 @@ namespace ExpenseLoggerApp.Forms.UserControls
         {
             try
             {
+                // Only establish connection when using this feature instead of putting this in LoadFormData
+                // Because users may not user this feature frequently.
+
+                // This Connection for Backup and Restore DB
+                this.EstablishDBConnection();
+
+                // Initialize dataset which will be used to store all datatable.
+                this.InitializeDataSet();
+
                 expenseLoggerBackupRestore.BackupDataSetToXML(expenseLoggerDataSet);
                 MessageBox.Show(AppResource.BackupDone);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                // make sure that connection to db will be closed in any cases.
+                expenseLoggerBackupRestore.CloseConnection();
             }
         }
 
@@ -80,6 +84,15 @@ namespace ExpenseLoggerApp.Forms.UserControls
         {
             try
             {
+                // Only establish connection when using this feature instead of putting this in LoadFormData
+                // Because users may not user this feature frequently.
+
+                // This Connection for Backup and Restore DB
+                this.EstablishDBConnection();
+
+                // Initialize dataset which will be used to store all datatable.
+                this.InitializeDataSet();
+
                 // Check if the backup file' existence.
                 string xmlFileName = expenseLoggerDataSet.DataSetName + ".xml";
                 if (File.Exists(xmlFileName))
@@ -105,6 +118,9 @@ namespace ExpenseLoggerApp.Forms.UserControls
                 // Enable action buttons after all.
                 buttonBackup.Enabled = true;
                 buttonRestore.Enabled = true;
+
+                // make sure that connection to db will be closed in any cases.
+                expenseLoggerBackupRestore.CloseConnection();
             }
         }
 
@@ -125,25 +141,32 @@ namespace ExpenseLoggerApp.Forms.UserControls
             bool isNewRow = e.RowIndex == categoriesData.Count;
             string newCategoryValue = dataGridViewExpensesCategories.Rows[e.RowIndex].Cells[1].Value?.ToString();
 
-            if (isNewRow)
+            if (string.IsNullOrEmpty(newCategoryValue))
             {
-                if (!string.IsNullOrEmpty(newCategoryValue))
-                {
-                    // Adding a new category to DB.
-                    parentForm.appCommands.AddCategory(LoginInfo.UserId, newCategoryValue);
-                    LoadDataToCategoryGridView();
-                }
+                MessageBox.Show(AppResource.CategoryIsRequired);
+
+                // Reload data.
+                LoadDataToCategoryGridView();
             }
             else
             {
-                // Retrieve the cureent category.
-                Category editingCategory = categoriesData[e.RowIndex];
-
-                if (editingCategory.Name != newCategoryValue)
+                if (isNewRow)
                 {
-                    // Updating exising category in the DB.
-                    parentForm.appCommands.UpdateCategory(LoginInfo.UserId, editingCategory.Id, newCategoryValue);
+                    // Adding a new category to DB.
+                    parentForm.appCommands.AddCategory(UserIdentity.Instance.UserId, newCategoryValue);
                     LoadDataToCategoryGridView();
+                }
+                else
+                {
+                    // Retrieve the cureent category.
+                    Category editingCategory = categoriesData[e.RowIndex];
+
+                    if (editingCategory.Name != newCategoryValue)
+                    {
+                        // Updating exising category in the DB.
+                        parentForm.appCommands.UpdateCategory(UserIdentity.Instance.UserId, editingCategory.Id, newCategoryValue);
+                        LoadDataToCategoryGridView();
+                    }
                 }
             }
         }
@@ -160,11 +183,11 @@ namespace ExpenseLoggerApp.Forms.UserControls
             string currency = (comboBoxCurrencies.SelectedItem as ComboBoxItem).Value.ToString();
 
             // Make a change when users selected an item in the comboBox.
-            this.parentForm.appCommands.AddOrUpdateCurrency(LoginInfo.UserId, currency);
+            this.parentForm.appCommands.AddOrUpdateCurrency(UserIdentity.Instance.UserId, currency);
 
             // Storing data to the shared class.
-            LoginInfo.Currency = currency;
-            LoginInfo.UserPreferenceCulture = CultureHelper.UserPreferenceCulture(currency);
+            UserIdentity.Instance.Currency = currency;
+            UserIdentity.Instance.UserPreferenceCulture = CultureHelper.UserPreferenceCulture(currency);
 
             // Show message to indicate updating successfully.
             MessageBox.Show(AppResource.DataSavedSuccessful);
@@ -238,28 +261,18 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
         public void LoadDataToComboBox()
         {
-            // Default data for currency comboBox.
-            List<ComboBoxItem> appCurrencyList = new List<ComboBoxItem>()
-            {
-                new ComboBoxItem() { Text = "Canadian Dollar", Value = "CAD" },
-                new ComboBoxItem() { Text = "US Dollar", Value = "USD" },
-                new ComboBoxItem() { Text = "Euro", Value = "EUR" },
-                new ComboBoxItem() { Text = "Pound Sterling", Value = "GBP" },
-                new ComboBoxItem() { Text = "Yuan", Value = "CNY" },
-                new ComboBoxItem() { Text = "Yen", Value = "JPY" },
-            };
-
             // Set datasource for comboBoxCurrencies
-            comboBoxCurrencies.DataSource = appCurrencyList;
+            comboBoxCurrencies.DataSource = AppDefaultValues.Currencies;
 
-            if (string.IsNullOrEmpty(LoginInfo.Currency))
+            if (string.IsNullOrEmpty(UserIdentity.Instance.Currency))
             {
                 // Store the currency info to the shared class.
-                LoginInfo.Currency = appCurrencyList.FirstOrDefault().Value.ToString();
+                UserIdentity.Instance.Currency = AppDefaultValues.Currencies.FirstOrDefault().Value.ToString();
             }
 
             // Default select user preference currency.
-            comboBoxCurrencies.SelectedIndex = appCurrencyList.FindIndex(x => x.Value.ToString() == LoginInfo.Currency);
+            comboBoxCurrencies.SelectedIndex =
+                AppDefaultValues.Currencies.FindIndex(x => x.Value.ToString() == UserIdentity.Instance.Currency);
 
             // Register events after the data has been loaded.
             comboBoxCurrencies.SelectedIndexChanged += ComboBoxCurrencies_SelectedIndexChanged;
@@ -308,7 +321,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             dataGridViewExpensesCategories.Rows.Clear();
 
             // Loop through the data list and bind data to each row of the dataGridView.
-            categoriesData = this.parentForm.appQueries.GetExpensesCategoriesByUserId(LoginInfo.UserId);
+            categoriesData = this.parentForm.appQueries.GetExpensesCategoriesByUserId(UserIdentity.Instance.UserId);
             categoriesData.Select((x, i) => new string[] { (i + 1).ToString(), x.Name })
                 .ToList().ForEach(x => dataGridViewExpensesCategories.Rows.Add(x));
 

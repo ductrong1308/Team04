@@ -32,7 +32,7 @@ namespace ExpenseLoggerApp.Forms
             if (expense != null)
             {
                 // Display the data on the controls.
-                List<string> expenseCategories = this.appQueries.GetExpenseCategories(LoginInfo.UserId);
+                List<string> expenseCategories = this.appQueries.GetExpenseCategories(UserIdentity.Instance.UserId);
                 comboBoxCategories.DataSource = expenseCategories;
                 comboBoxCategories.SelectedIndex = comboBoxCategories.FindStringExact(expense.CategoryName);
 

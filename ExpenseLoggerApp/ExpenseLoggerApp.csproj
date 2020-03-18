@@ -107,9 +107,10 @@
     <Compile Include="Forms\UserControls\SettingsUserControl.Designer.cs">
       <DependentUpon>SettingsUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AppDefaultValues.cs" />
     <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\UserIdentity.cs" />
     <Compile Include="Helpers\ValidationHelper.cs" />
-    <Compile Include="Helpers\LoginInfo.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Models\ComboBoxItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

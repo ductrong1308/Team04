@@ -95,7 +95,7 @@ namespace ExpenseLoggerBLL.Commands
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
                 // Checking if user had a currency preference or not.
-                var userCurrency = context.Settings.FirstOrDefault(x => x.Name.Trim().ToLower() == "currency");
+                var userCurrency = context.Settings.FirstOrDefault(x => x.Name.Trim().ToLower() == "currency" && x.UserID == userId);
 
                 // if yes, just update the value
                 if (userCurrency != null)
