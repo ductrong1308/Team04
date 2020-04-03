@@ -36,6 +36,7 @@
             this.comboBoxCategories = new System.Windows.Forms.ComboBox();
             this.labelAmount = new System.Windows.Forms.Label();
             this.labelCategory = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonUpdateCurrentExpense
@@ -127,8 +128,12 @@
             this.Controls.Add(this.comboBoxCategories);
             this.Controls.Add(this.labelAmount);
             this.Controls.Add(this.labelCategory);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ExpenseLoggerEditExpenseForm";
-            this.Text = "ExpenseLoggerEditExpenseForm";
+            this.Text = "Expense Details";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

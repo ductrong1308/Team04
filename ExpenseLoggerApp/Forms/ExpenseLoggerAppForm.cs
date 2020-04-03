@@ -98,7 +98,7 @@ namespace ExpenseLoggerApp
                 button.ForeColor = Color.Black;
             }
 
-            clickedButton.BackColor = Color.DarkGray;
+            clickedButton.BackColor = Color.DarkSeaGreen;
             clickedButton.ForeColor = Color.White;
         }
 

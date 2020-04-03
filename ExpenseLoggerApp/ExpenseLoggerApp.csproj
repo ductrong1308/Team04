@@ -64,6 +64,12 @@
       <DependentUpon>ExpenseLoggerAppForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ExpenseLoggerAppProgram.cs" />
+    <Compile Include="Forms\ExpenseLoggerEditCategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExpenseLoggerEditCategoryForm.Designer.cs">
+      <DependentUpon>ExpenseLoggerEditCategoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ExpenseLoggerEditExpenseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\ExpenseLoggerAppForm.resx">
       <DependentUpon>ExpenseLoggerAppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExpenseLoggerEditCategoryForm.resx">
+      <DependentUpon>ExpenseLoggerEditCategoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExpenseLoggerEditExpenseForm.resx">
       <DependentUpon>ExpenseLoggerEditExpenseForm.cs</DependentUpon>

@@ -62,6 +62,27 @@ namespace ExpenseLoggerBLL.Commands
         }
 
         /// <summary>
+        /// Delete an existing Category.
+        /// </summary>
+        /// <param name="selectedCategory"></param>
+        public void DeleteSelectedCategory(Category selectedCategory)
+        {
+            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
+            {
+                // Checking if the expense item already existed in the DB.
+                Category selectedItem = context.Categories
+                    .FirstOrDefault(x => x.Id == selectedCategory.Id && x.UserID == selectedCategory.UserID);
+
+                // Delete the item if item is existing.
+                if (selectedItem != null)
+                {
+                    context.Categories.Remove(selectedItem);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        /// <summary>
         /// Update an existing expense.
         /// </summary>
         /// <param name="existingExpense"></param>
@@ -79,6 +100,28 @@ namespace ExpenseLoggerBLL.Commands
                     selectedItem.CategoryName = existingExpense.CategoryName;
                     selectedItem.Amount = existingExpense.Amount;
                     selectedItem.CreatedDate = existingExpense.CreatedDate;
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Update an existing category.
+        /// </summary>
+        /// <param name="existingCategory"></param>
+        public void UpdateExistingCategory(Category existingCategory)
+        {
+            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
+            {
+                // Checking if the expense item already existed in the DB.
+                Category selectedItem = context.Categories
+                    .FirstOrDefault(x => x.Id == existingCategory.Id && x.UserID == existingCategory.UserID);
+
+                // Update the new data to the existing item.
+                if (selectedItem != null)
+                {
+                    selectedItem.Name = existingCategory.Name;
                 }
 
                 context.SaveChanges();

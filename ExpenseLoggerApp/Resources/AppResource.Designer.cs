@@ -133,6 +133,24 @@ namespace ExpenseLoggerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DeleteCategory.
+        /// </summary>
+        internal static string DeleteCategory {
+            get {
+                return ResourceManager.GetString("DeleteCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this category?.
+        /// </summary>
+        internal static string DeleteCategoryConfirmMessage {
+            get {
+                return ResourceManager.GetString("DeleteCategoryConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this expense?.
         /// </summary>
         internal static string DeleteConfirmMessage {
@@ -268,11 +286,20 @@ namespace ExpenseLoggerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No expense data found within the current date range..
+        /// </summary>
+        internal static string NoExpenseDataFound {
+            get {
+                return ResourceManager.GetString("NoExpenseDataFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Item Selected!.
         /// </summary>
-        internal static string NoExpenseItemSelected {
+        internal static string NoItemSelected {
             get {
-                return ResourceManager.GetString("NoExpenseItemSelected", resourceCulture);
+                return ResourceManager.GetString("NoItemSelected", resourceCulture);
             }
         }
         

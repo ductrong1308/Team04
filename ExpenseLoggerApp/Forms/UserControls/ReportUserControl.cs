@@ -126,7 +126,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
         {
             if (selectedExpense == null)
             {
-                MessageBox.Show(AppResource.NoExpenseItemSelected);
+                MessageBox.Show(AppResource.NoItemSelected);
             }
             else
             {
@@ -156,13 +156,13 @@ namespace ExpenseLoggerApp.Forms.UserControls
         {
             if (selectedExpense == null)
             {
-                MessageBox.Show(AppResource.NoExpenseItemSelected);
+                MessageBox.Show(AppResource.NoItemSelected);
                 return;
             }
             else
             {
-                DialogResult dialogResult =
-                    MessageBox.Show(AppResource.DeleteConfirmMessage, AppResource.DeleteExpense, MessageBoxButtons.OKCancel);
+                DialogResult dialogResult = MessageBox.Show(
+                    AppResource.DeleteConfirmMessage, AppResource.DeleteExpense, MessageBoxButtons.OKCancel);
 
                 if (dialogResult == DialogResult.OK)
                 {
@@ -213,8 +213,15 @@ namespace ExpenseLoggerApp.Forms.UserControls
                 expensesData = this.parentForm.appQueries.FilterExpensesByDate(
                     UserIdentity.Instance.UserId, dateTimePickerFromDate.Value.Date, dateTimePickerToDate.Value.Date);
 
-                // Display data.
-                DisplayExpensesData(expensesData);
+                if (!expensesData.Any())
+                {
+                    MessageBox.Show(AppResource.NoExpenseDataFound);
+                }
+                else
+                {
+                    // Display data.
+                    DisplayExpensesData(expensesData);
+                }
             }
         }
 

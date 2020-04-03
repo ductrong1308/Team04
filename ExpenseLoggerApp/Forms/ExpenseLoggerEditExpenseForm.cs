@@ -74,7 +74,7 @@ namespace ExpenseLoggerApp.Forms
         }
 
         /// <summary>
-        /// User do nothing, closign the popup or cancel the process.
+        /// User do nothing, closing the popup or cancel the process.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

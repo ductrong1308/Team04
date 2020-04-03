@@ -141,6 +141,12 @@
   <data name="DateOfBirth" xml:space="preserve">
     <value>Date Of Birth</value>
   </data>
+  <data name="DeleteCategory" xml:space="preserve">
+    <value>DeleteCategory</value>
+  </data>
+  <data name="DeleteCategoryConfirmMessage" xml:space="preserve">
+    <value>Are you sure you want to delete this category?</value>
+  </data>
   <data name="DeleteConfirmMessage" xml:space="preserve">
     <value>Are you sure you want to delete this expense?</value>
   </data>
@@ -186,7 +192,10 @@
   <data name="NoDataFound" xml:space="preserve">
     <value>No data found!</value>
   </data>
-  <data name="NoExpenseItemSelected" xml:space="preserve">
+  <data name="NoExpenseDataFound" xml:space="preserve">
+    <value>No expense data found within the current date range.</value>
+  </data>
+  <data name="NoItemSelected" xml:space="preserve">
     <value>No Item Selected!</value>
   </data>
   <data name="Password" xml:space="preserve">

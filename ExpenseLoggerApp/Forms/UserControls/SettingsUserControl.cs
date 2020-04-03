@@ -14,6 +14,10 @@ namespace ExpenseLoggerApp.Forms.UserControls
 {
     public partial class SettingsUserControl : BaseUserControl
     {
+        // This variable is used to storing selected category data 
+        // so that child forms can access and do editing.
+        public static Category selectedCategory;
+
         List<Category> categoriesData;
 
         // field to keep the Backup and Restore layer
@@ -41,6 +45,59 @@ namespace ExpenseLoggerApp.Forms.UserControls
             // Register button event.
             buttonBackup.Click += ButtonBackup_Click;
             buttonRestore.Click += ButtonRestore_Click;
+            buttonEditCategory.Click += ButtonEditCategory_Click;
+            buttonDeleteCategory.Click += ButtonDeleteCategory_Click;
+        }
+
+        private void ButtonDeleteCategory_Click(object sender, EventArgs e)
+        {
+            if (selectedCategory == null)
+            {
+                MessageBox.Show(AppResource.NoItemSelected);
+                return;
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show(
+                    AppResource.DeleteCategoryConfirmMessage, AppResource.DeleteCategory, MessageBoxButtons.OKCancel);
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    // Call to BLL to delete the selected Category.
+                    this.parentForm.appCommands.DeleteSelectedCategory(selectedCategory);
+
+                    // Set main form's data to default values
+                    SetFormControlsToDefaultState();
+
+                    // Query data after editing and display them on the dataGridView.
+                    LoadDataToCategoryGridView();
+                }
+            }
+        }
+
+        private void ButtonEditCategory_Click(object sender, EventArgs e)
+        {
+            if (selectedCategory == null)
+            {
+                MessageBox.Show(AppResource.NoItemSelected);
+            }
+            else
+            {
+                // Show another form that lets user to edit the selected expese's data.
+                ExpenseLoggerEditCategoryForm editExpenseCategoryForm = new ExpenseLoggerEditCategoryForm();
+                var result = editExpenseCategoryForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    // Set main form's data to default values
+                    SetFormControlsToDefaultState();
+
+                    // Query data after editing and display them on the dataGridView.
+                    LoadDataToCategoryGridView();
+                }
+
+                // If users don't make any changes.
+                editExpenseCategoryForm.Hide();
+            }
         }
 
         /// <summary>
@@ -124,53 +181,6 @@ namespace ExpenseLoggerApp.Forms.UserControls
             }
         }
 
-        // Adding cell value = -1 when users want to add a new row within the dataGridView.
-        private void DataGridViewExpensesCategories_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
-        {
-            e.Row.Cells[0].Value = -1;
-        }
-
-        /// <summary>
-        /// Add or  Update data when users made changes on the dataGridView.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DataGridViewExpensesCategories_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            // Check if user add or update data.
-            bool isNewRow = e.RowIndex == categoriesData.Count;
-            string newCategoryValue = dataGridViewExpensesCategories.Rows[e.RowIndex].Cells[1].Value?.ToString();
-
-            if (string.IsNullOrEmpty(newCategoryValue))
-            {
-                MessageBox.Show(AppResource.CategoryIsRequired);
-
-                // Reload data.
-                LoadDataToCategoryGridView();
-            }
-            else
-            {
-                if (isNewRow)
-                {
-                    // Adding a new category to DB.
-                    parentForm.appCommands.AddCategory(UserIdentity.Instance.UserId, newCategoryValue);
-                    LoadDataToCategoryGridView();
-                }
-                else
-                {
-                    // Retrieve the cureent category.
-                    Category editingCategory = categoriesData[e.RowIndex];
-
-                    if (editingCategory.Name != newCategoryValue)
-                    {
-                        // Updating exising category in the DB.
-                        parentForm.appCommands.UpdateCategory(UserIdentity.Instance.UserId, editingCategory.Id, newCategoryValue);
-                        LoadDataToCategoryGridView();
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Changing Currency
         /// </summary>
@@ -246,8 +256,6 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
             // De-register grid and combobox events.
             comboBoxCurrencies.SelectedIndexChanged -= ComboBoxCurrencies_SelectedIndexChanged;
-            dataGridViewExpensesCategories.CellValueChanged -= DataGridViewExpensesCategories_CellValueChanged;
-            dataGridViewExpensesCategories.DefaultValuesNeeded -= DataGridViewExpensesCategories_DefaultValuesNeeded;
 
             // Reload data to the combobox
             LoadDataToComboBox();
@@ -286,8 +294,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
         private void SetupCategoriesDataGridView()
         {
             // DataGridView settings
-            dataGridViewExpensesCategories.ReadOnly = false;
-            dataGridViewExpensesCategories.AllowUserToAddRows = true;
+            dataGridViewExpensesCategories.ReadOnly = true;
+            dataGridViewExpensesCategories.AllowUserToAddRows = false;
             dataGridViewExpensesCategories.MultiSelect = false;
             dataGridViewExpensesCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -325,13 +333,43 @@ namespace ExpenseLoggerApp.Forms.UserControls
             categoriesData.Select((x, i) => new string[] { (i + 1).ToString(), x.Name })
                 .ToList().ForEach(x => dataGridViewExpensesCategories.Rows.Add(x));
 
-            // Make column No read only. 
-            // This is auto generated No
-            dataGridViewExpensesCategories.Columns["No."].ReadOnly = true;
+            selectedCategory = categoriesData.FirstOrDefault();
 
-            // Register grid's events.
-            dataGridViewExpensesCategories.CellValueChanged += DataGridViewExpensesCategories_CellValueChanged;
-            dataGridViewExpensesCategories.DefaultValuesNeeded += DataGridViewExpensesCategories_DefaultValuesNeeded;
+            // Register user selection changed.
+            dataGridViewExpensesCategories.SelectionChanged += DataGridViewExpensesCategories_SelectionChanged;
+        }
+
+        /// <summary>
+        /// Set form's control and variable to default values.
+        /// </summary>
+        private void SetFormControlsToDefaultState()
+        {
+            // Set data to default
+            categoriesData = null;
+            selectedCategory = null;
+
+            // De-register grid view selection changed event
+            dataGridViewExpensesCategories.SelectionChanged -= DataGridViewExpensesCategories_SelectionChanged;
+        }
+
+        /// <summary>
+        /// Get selected expense item on the dataGridView.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridViewExpensesCategories_SelectionChanged(object sender, EventArgs e)
+        {
+            // Check if users selected the whole row or just a cell
+            var rowIndex = dataGridViewExpensesCategories.SelectedRows.Count > 0
+                ? dataGridViewExpensesCategories.SelectedRows[0].Index
+                : dataGridViewExpensesCategories.SelectedCells.Count > 0
+                    ? dataGridViewExpensesCategories.SelectedCells[0].RowIndex : -1;
+
+            if (rowIndex > -1)
+            {
+                // Store the selected expense to a variable, which will be used later on.
+                selectedCategory = categoriesData[rowIndex];
+            }
         }
     }
 }
