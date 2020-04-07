@@ -1,4 +1,5 @@
 ﻿using ExpenseLoggerApp.Forms.UserControls;
+using ExpenseLoggerApp.Helpers;
 using ExpenseLoggerApp.Resources;
 using ExpenseLoggerDAL;
 using System;
@@ -15,8 +16,48 @@ namespace ExpenseLoggerApp.Forms
 
             // Register events
             this.Load += ExpenseLoggerEditCategoryForm_Load;
+            buttonAddNewCategory.Click += ButtonAddNewCategory_Click;
             buttonUpdateCurrentCategory.Click += ButtonUpdateCurrentCategory_Click;
             buttonCancel.Click += ButtonCancel_Click;
+        }
+
+        /// <summary>
+        /// Add a new category
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonAddNewCategory_Click(object sender, EventArgs e)
+        {
+            string newCategoryName = textBoxCategory.Text.Trim().ToString();
+            if (string.IsNullOrEmpty(newCategoryName))
+            {
+                MessageBox.Show(AppResource.CategoryIsRequired);
+            }
+            else
+            {
+                // Check if the name already existed or not.
+                bool isNameExisted = appQueries.IsCategoryNameExisted(UserIdentity.Instance.UserId, newCategoryName);
+                if (isNameExisted)
+                {
+                    // Show messge box if the name already used.
+                    MessageBox.Show(AppResource.CategoryNameIsDuplicated);
+                }
+                else
+                {
+                    try
+                    {
+                        // Call service in BLL to add a new category name.
+                        appCommands.AddCategory(UserIdentity.Instance.UserId, newCategoryName);
+
+                        // Close the dialog when finishing.
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -68,10 +109,23 @@ namespace ExpenseLoggerApp.Forms
                 var category = SettingsUserControl.selectedCategory;
                 category.Name = editedCategoryName;
 
-                appCommands.UpdateExistingCategory(category);
+                try
+                {
+                    bool isItemUpdated = appCommands.UpdateExistingCategory(category);
+                    if (isItemUpdated)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppResource.SelectedCategoryNotFound);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-
-            this.DialogResult = DialogResult.OK;
         }
     }
 }

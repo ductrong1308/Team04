@@ -103,7 +103,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             var lastDayOfYear = firstDayOfYear.AddYears(1).AddDays(-1);
 
             // Calling service in the BLL to get the data.
-            List<Expense> expensesData = this.parentForm.appQueries
+            List<Expense> expensesData = this.appQueries
                 .FilterExpensesByDate(UserIdentity.Instance.UserId, firstDayOfYear, lastDayOfYear);
 
             // Grouping data by month.

@@ -97,6 +97,15 @@ namespace ExpenseLoggerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category name is duplcated. Please input another name..
+        /// </summary>
+        internal static string CategoryNameIsDuplicated {
+            get {
+                return ResourceManager.GetString("CategoryNameIsDuplicated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ConfirmPassword.
         /// </summary>
         internal static string ConfirmPassword {
@@ -345,6 +354,24 @@ namespace ExpenseLoggerApp.Resources {
         internal static string RestoreDone {
             get {
                 return ResourceManager.GetString("RestoreDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected category item is not found!.
+        /// </summary>
+        internal static string SelectedCategoryNotFound {
+            get {
+                return ResourceManager.GetString("SelectedCategoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected expense item is not found!.
+        /// </summary>
+        internal static string SelectedExpenseNotFound {
+            get {
+                return ResourceManager.GetString("SelectedExpenseNotFound", resourceCulture);
             }
         }
         

@@ -167,13 +167,26 @@ namespace ExpenseLoggerApp.Forms.UserControls
                 if (dialogResult == DialogResult.OK)
                 {
                     // Call to BLL to delete the selected Expense.
-                    this.parentForm.appCommands.DeleteSelectedExpense(selectedExpense);
+                    try
+                    {
+                        bool isItemDeleted = this.appCommands.DeleteSelectedExpense(selectedExpense);
+                        if (isItemDeleted)
+                        {
+                            // Set main form's data to default values
+                            SetFormControlsToDefaultState();
 
-                    // Set main form's data to default values
-                    SetFormControlsToDefaultState();
-
-                    // Query data after editing and display them on the dataGridView.
-                    QueryExpenseData();
+                            // Query data after editing and display them on the dataGridView.
+                            QueryExpenseData();
+                        }
+                        else
+                        {
+                            MessageBox.Show(AppResource.SelectedExpenseNotFound);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
@@ -210,7 +223,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             else
             {
                 // Call service in BLL
-                expensesData = this.parentForm.appQueries.FilterExpensesByDate(
+                expensesData = this.appQueries.FilterExpensesByDate(
                     UserIdentity.Instance.UserId, dateTimePickerFromDate.Value.Date, dateTimePickerToDate.Value.Date);
 
                 if (!expensesData.Any())

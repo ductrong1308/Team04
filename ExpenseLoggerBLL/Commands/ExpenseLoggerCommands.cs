@@ -44,10 +44,13 @@ namespace ExpenseLoggerBLL.Commands
         /// Delete an existing expense.
         /// </summary>
         /// <param name="selectedExpense"></param>
-        public void DeleteSelectedExpense(Expense selectedExpense)
+        public bool DeleteSelectedExpense(Expense selectedExpense)
         {
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
+                // Check if item is successful deleted or not.
+                bool isItemDeleted = false;
+
                 // Checking if the expense item already existed in the DB.
                 Expense selectedItem = context.Expenses
                     .FirstOrDefault(x => x.Id == selectedExpense.Id && x.UserID == selectedExpense.UserID);
@@ -57,7 +60,10 @@ namespace ExpenseLoggerBLL.Commands
                 {
                     context.Expenses.Remove(selectedItem);
                     context.SaveChanges();
+                    isItemDeleted = true;
                 }
+
+                return isItemDeleted;
             }
         }
 
@@ -65,10 +71,13 @@ namespace ExpenseLoggerBLL.Commands
         /// Delete an existing Category.
         /// </summary>
         /// <param name="selectedCategory"></param>
-        public void DeleteSelectedCategory(Category selectedCategory)
+        public bool DeleteSelectedCategory(Category selectedCategory)
         {
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
+                // Check if item is successful deleted or not.
+                bool isItemDeleted = false;
+
                 // Checking if the expense item already existed in the DB.
                 Category selectedItem = context.Categories
                     .FirstOrDefault(x => x.Id == selectedCategory.Id && x.UserID == selectedCategory.UserID);
@@ -78,7 +87,10 @@ namespace ExpenseLoggerBLL.Commands
                 {
                     context.Categories.Remove(selectedItem);
                     context.SaveChanges();
+                    isItemDeleted = true;
                 }
+
+                return isItemDeleted;
             }
         }
 
@@ -86,10 +98,13 @@ namespace ExpenseLoggerBLL.Commands
         /// Update an existing expense.
         /// </summary>
         /// <param name="existingExpense"></param>
-        public void UpdateExistingExpense(Expense existingExpense)
+        public bool UpdateExistingExpense(Expense existingExpense)
         {
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
+                // Check if item is successful updated or not.
+                bool isItemUpdated = false;
+
                 // Checking if the expense item already existed in the DB.
                 Expense selectedItem = context.Expenses
                     .FirstOrDefault(x => x.Id == existingExpense.Id && x.UserID == existingExpense.UserID);
@@ -100,9 +115,12 @@ namespace ExpenseLoggerBLL.Commands
                     selectedItem.CategoryName = existingExpense.CategoryName;
                     selectedItem.Amount = existingExpense.Amount;
                     selectedItem.CreatedDate = existingExpense.CreatedDate;
+                    context.SaveChanges();
+
+                    isItemUpdated = true;
                 }
 
-                context.SaveChanges();
+                return isItemUpdated;
             }
         }
 
@@ -110,10 +128,13 @@ namespace ExpenseLoggerBLL.Commands
         /// Update an existing category.
         /// </summary>
         /// <param name="existingCategory"></param>
-        public void UpdateExistingCategory(Category existingCategory)
+        public bool UpdateExistingCategory(Category existingCategory)
         {
             using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
             {
+                // Check if item is successful updated or not.
+                bool isItemUpdated = false;
+
                 // Checking if the expense item already existed in the DB.
                 Category selectedItem = context.Categories
                     .FirstOrDefault(x => x.Id == existingCategory.Id && x.UserID == existingCategory.UserID);
@@ -122,9 +143,11 @@ namespace ExpenseLoggerBLL.Commands
                 if (selectedItem != null)
                 {
                     selectedItem.Name = existingCategory.Name;
+                    context.SaveChanges();
+                    isItemUpdated = true;
                 }
 
-                context.SaveChanges();
+                return isItemUpdated;
             }
         }
 
@@ -155,29 +178,6 @@ namespace ExpenseLoggerBLL.Commands
                         UserID = userId
                     };
                     context.Settings.Add(newSetting);
-                }
-
-                context.SaveChanges();
-            }
-        }
-
-        /// <summary>
-        /// Update an existing category.
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="categoryId"></param>
-        /// <param name="newCategoryName"></param>
-        public void UpdateCategory(int userId, int categoryId, string newCategoryName)
-        {
-            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
-            {
-                // Checking if the category already existed.
-                Category category = context.Categories.Where(x => x.Id == categoryId && x.UserID == userId).FirstOrDefault();
-
-                // Update the existing category with new value.
-                if (category != null)
-                {
-                    category.Name = newCategoryName;
                 }
 
                 context.SaveChanges();

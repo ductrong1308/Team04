@@ -63,14 +63,27 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
                 if (dialogResult == DialogResult.OK)
                 {
-                    // Call to BLL to delete the selected Category.
-                    this.parentForm.appCommands.DeleteSelectedCategory(selectedCategory);
+                    try
+                    {
+                        // Call to BLL to delete the selected Category.
+                        bool isItemDeleted = this.appCommands.DeleteSelectedCategory(selectedCategory);
+                        if (isItemDeleted)
+                        {
+                            // Set main form's data to default values
+                            SetFormControlsToDefaultState();
 
-                    // Set main form's data to default values
-                    SetFormControlsToDefaultState();
-
-                    // Query data after editing and display them on the dataGridView.
-                    LoadDataToCategoryGridView();
+                            // Query data after editing and display them on the dataGridView.
+                            LoadDataToCategoryGridView();
+                        }
+                        else
+                        {
+                            MessageBox.Show(AppResource.SelectedCategoryNotFound);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
@@ -193,14 +206,20 @@ namespace ExpenseLoggerApp.Forms.UserControls
             string currency = (comboBoxCurrencies.SelectedItem as ComboBoxItem).Value.ToString();
 
             // Make a change when users selected an item in the comboBox.
-            this.parentForm.appCommands.AddOrUpdateCurrency(UserIdentity.Instance.UserId, currency);
+            try
+            {
+                this.appCommands.AddOrUpdateCurrency(UserIdentity.Instance.UserId, currency);
+                // Storing data to the shared class.
+                UserIdentity.Instance.Currency = currency;
+                UserIdentity.Instance.UserPreferenceCulture = CultureHelper.UserPreferenceCulture(currency);
 
-            // Storing data to the shared class.
-            UserIdentity.Instance.Currency = currency;
-            UserIdentity.Instance.UserPreferenceCulture = CultureHelper.UserPreferenceCulture(currency);
-
-            // Show message to indicate updating successfully.
-            MessageBox.Show(AppResource.DataSavedSuccessful);
+                // Show message to indicate updating successfully.
+                MessageBox.Show(AppResource.DataSavedSuccessful);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -329,7 +348,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             dataGridViewExpensesCategories.Rows.Clear();
 
             // Loop through the data list and bind data to each row of the dataGridView.
-            categoriesData = this.parentForm.appQueries.GetExpensesCategoriesByUserId(UserIdentity.Instance.UserId);
+            categoriesData = this.appQueries.GetExpensesCategoriesByUserId(UserIdentity.Instance.UserId);
             categoriesData.Select((x, i) => new string[] { (i + 1).ToString(), x.Name })
                 .ToList().ForEach(x => dataGridViewExpensesCategories.Rows.Add(x));
 

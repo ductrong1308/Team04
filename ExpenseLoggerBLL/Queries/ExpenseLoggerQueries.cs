@@ -102,5 +102,19 @@ namespace ExpenseLoggerBLL.Queries
                 return context.Categories.Where(x => x.UserID == userId).ToList();
             }
         }
+
+        /// <summary>
+        /// Check if a category name is already used or not.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="categoryName"></param>
+        /// <returns></returns>
+        public bool IsCategoryNameExisted(int userId, string categoryName)
+        {
+            using (ExpenseLoggerDBContext context = new ExpenseLoggerDBContext())
+            {
+                return context.Categories.FirstOrDefault(x => x.UserID == userId && x.Name == categoryName) != null;
+            }
+        }
     }
 }

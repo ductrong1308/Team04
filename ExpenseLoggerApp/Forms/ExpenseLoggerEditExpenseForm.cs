@@ -67,10 +67,23 @@ namespace ExpenseLoggerApp.Forms
                 expense.Amount = amount;
                 expense.CreatedDate = dateTimePickerCreatedDate.Value;
 
-                appCommands.UpdateExistingExpense(expense);
+                try
+                {
+                    bool isItemUpdated = appCommands.UpdateExistingExpense(expense);
+                    if (isItemUpdated)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppResource.SelectedExpenseNotFound);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-
-            this.DialogResult = DialogResult.OK;
         }
 
         /// <summary>

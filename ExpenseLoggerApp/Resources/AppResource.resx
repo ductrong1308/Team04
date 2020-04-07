@@ -129,6 +129,9 @@
   <data name="CategoryIsRequired" xml:space="preserve">
     <value>Category cannot be null!</value>
   </data>
+  <data name="CategoryNameIsDuplicated" xml:space="preserve">
+    <value>Category name is duplcated. Please input another name.</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>ConfirmPassword</value>
   </data>
@@ -212,6 +215,12 @@
   </data>
   <data name="RestoreDone" xml:space="preserve">
     <value>Your data has been restored successfully!</value>
+  </data>
+  <data name="SelectedCategoryNotFound" xml:space="preserve">
+    <value>The selected category item is not found!</value>
+  </data>
+  <data name="SelectedExpenseNotFound" xml:space="preserve">
+    <value>The selected expense item is not found!</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign In</value>

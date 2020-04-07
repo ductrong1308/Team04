@@ -27,7 +27,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
             buttonClear.Click += ButtonClear_Click;
 
             // Getting data and bind data to comboBox
-            expenseCategories = this.parentForm.appQueries.GetExpenseCategories(UserIdentity.Instance.UserId);
+            expenseCategories = this.appQueries.GetExpenseCategories(UserIdentity.Instance.UserId);
             comboBoxCategories.DataSource = expenseCategories;
         }
 
@@ -63,7 +63,7 @@ namespace ExpenseLoggerApp.Forms.UserControls
                 DateTime expensesCreatedDate = dateTimePickerCreatedDate.Value;
 
                 // Save data to the DB.
-                bool isDataSavedSuccessful = this.parentForm.appCommands.AddNewExpense(new Expense()
+                bool isDataSavedSuccessful = this.appCommands.AddNewExpense(new Expense()
                 {
                     Amount = amount,
                     CategoryName = category,
