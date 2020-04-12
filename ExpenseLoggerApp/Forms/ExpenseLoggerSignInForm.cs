@@ -13,12 +13,23 @@ namespace ExpenseLoggerApp.Forms
         public ExpenseLoggerSignInForm()
         {
             InitializeComponent();
+            BindDefaultLoginInfoToFormControls();
 
             // Register events.
             buttonSignIn.Click += ButtonSignIn_Click;
             buttonSignUp.Click += ButtonSignUp_Click;
             textBoxPassword.KeyDown += EnterSignIn;
             textBoxEmail.KeyDown += EnterSignIn;
+        }
+
+        /// <summary>
+        /// Loading default signin information to textbox Email and textbox Password
+        /// Just for demo purpose
+        /// </summary>
+        private void BindDefaultLoginInfoToFormControls()
+        {
+            this.textBoxEmail.Text = "user@gmail.com";
+            this.textBoxPassword.Text = "123";
         }
 
         /// <summary>

@@ -22,6 +22,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
         /// </summary>
         public override void LoadFormData()
         {
+            base.LoadFormData();
+
             // Loading data to the comboBoxYears
             int currentYear = DateTime.Today.Year;
             LoadComboBoxData(currentYear);

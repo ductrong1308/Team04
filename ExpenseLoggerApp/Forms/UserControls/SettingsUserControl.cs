@@ -33,6 +33,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
         public override void LoadFormData()
         {
+            base.LoadFormData();
+
             this.LoadDataToComboBox();
 
             SetupCategoriesDataGridView();

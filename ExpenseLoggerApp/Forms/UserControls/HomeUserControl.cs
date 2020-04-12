@@ -22,6 +22,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
         /// </summary>
         public override void LoadFormData()
         {
+            base.LoadFormData();
+
             // Register events
             buttonAddNewExpense.Click += ButtonAddNewExpense_Click;
             buttonClear.Click += ButtonClear_Click;

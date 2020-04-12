@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace ExpenseLoggerApp.Forms.UserControls
 {
-    public abstract class BaseUserControl : UserControl, IUserControlLoaded
+    public class BaseUserControl : UserControl, IUserControlLoaded
     {
         public ExpenseLoggerQueries appQueries;
         public ExpenseLoggerCommands appCommands;
@@ -45,6 +45,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
         /// The method is used to load some common things for UserControl
         /// This must be overridden by derived classes
         /// </summary>
-        public abstract void LoadFormData();
+        public virtual void LoadFormData() {
+            this.AutoSizeMode = AutoSizeMode.GrowOnly;
+        }
     }
 }

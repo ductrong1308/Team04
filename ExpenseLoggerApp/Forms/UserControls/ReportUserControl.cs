@@ -25,6 +25,8 @@ namespace ExpenseLoggerApp.Forms.UserControls
 
         public override void LoadFormData()
         {
+            base.LoadFormData();
+
             SetFormControlsToDefaultState();
 
             // Bind data to ComboBox
